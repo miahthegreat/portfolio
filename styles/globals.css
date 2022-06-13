@@ -1,16 +1,43 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    @apply bg-zinc-900 scroll-smooth scroll-pt-[72px]
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.header {
+    @apply fixed top-0 w-full flex justify-between bg-zinc-900/60 backdrop-blur-sm items-center p-4 max-w-5xl mx-auto
 }
 
-* {
-  box-sizing: border-box;
+.main {
+    @apply flex justify-between mt-16 px-8 py-12 max-w-5xl mx-auto items-center
+}
+
+.skills, .projects, .contact {
+    @apply px-8 py-12 max-w-5xl mx-auto
+}
+
+.skill-li {
+    @apply flex flex-col items-center justify-center gap-2 text-center text-4xl
+}
+
+.nav-links {
+    @apply flex justify-start gap-3
+}
+
+.external-links {
+    @apply justify-end gap-3 hidden sm:flex
+}
+
+.nav-link, .external-link {
+    @apply text-gray-300 font-mono hover:text-gray-100 px-2 hover:bg-gray-700/50 hover:cursor-pointer hover:rounded-md transition duration-200 ease-in rounded-md text-xl
+}
+
+.external-link {
+    @apply rounded-md p-2 hover:rounded-md text-2xl
+}
+
+.app-link {
+    @apply flex items-center justify-center bg-slate-700 px-2 hover:bg-slate-800 transition duration-200 ease-in rounded-md
 }
