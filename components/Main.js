@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import logo from "../public/images/avatar.png";
 
@@ -14,11 +15,13 @@ const Main = () => {
           sometimes.
         </p>
       </div>
-      <div className="w-32 rounded-full">
-        <img
-          src={logo.src}
+      <div className="w-32 overflow-hidden rounded-full">
+        <Image
+          src={logo}
           alt="TMNT Avatar"
-          className="rounded-full object-cover"
+          className="object-cover"
+          width={600}
+          height={449}
         />
       </div>
     </div>

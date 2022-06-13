@@ -33,7 +33,7 @@ const Projects = () => {
         <h1 className="font-mono text-3xl text-gray-50">Featured Projects</h1>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {projects.map((project) => {
-            return <ProjectCard project={project} />;
+            return <ProjectCard key={project.title} project={project} />;
           })}
         </div>
       </div>
