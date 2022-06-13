@@ -6,9 +6,9 @@ import {
   SiGraphql,
   SiJavascript,
   SiNextdotjs,
+  SiNodedotjs,
   SiReact,
   SiTailwindcss,
-  SiVisualstudiocode,
 } from "react-icons/si";
 
 const Skills = () => {
@@ -51,8 +51,8 @@ const Skills = () => {
             <SiGraphql className="text-[#d833a3]" />
           </li>
           <li className="skill-li">
-            <span className="text-sm">VSC</span>
-            <SiVisualstudiocode className="text-[#197ec5]" />
+            <span className="text-sm">Node.js</span>
+            <SiNodedotjs className="text-[#89ba3d]" />
           </li>
         </ul>
       </div>

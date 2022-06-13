@@ -15,7 +15,7 @@ const Main = () => {
           sometimes.
         </p>
       </div>
-      <div className="w-32 overflow-hidden rounded-full">
+      <div className="-z-10 w-32 overflow-hidden rounded-full">
         <Image
           src={logo}
           alt="TMNT Avatar"
