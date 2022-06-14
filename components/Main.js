@@ -15,13 +15,13 @@ const Main = () => {
           sometimes.
         </p>
       </div>
-      <div className="-z-10 w-32 overflow-hidden rounded-full">
+      <div className="-z-10 h-32 w-32 overflow-hidden">
         <Image
           src={logo}
           alt="TMNT Avatar"
           className="object-cover"
-          width={600}
-          height={449}
+          width={421}
+          height={421}
         />
       </div>
     </div>

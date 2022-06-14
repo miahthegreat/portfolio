@@ -13,6 +13,16 @@ const Contact = () => {
       <h1 className="mb-8 font-mono text-3xl text-gray-50">Get in touch</h1>
       <ul className="flex items-center justify-center gap-3">
         <a
+          href="https://github.com/miahthegreat"
+          target="_blank"
+          rel="noreferrer"
+          className="external-link md:hidden"
+        >
+          <li>
+            <SiGithub />
+          </li>
+        </a>
+        <a
           href="https://twitter.com/miahthegreat"
           target="_blank"
           rel="noreferrer"
