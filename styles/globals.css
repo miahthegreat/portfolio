@@ -7,7 +7,7 @@ html {
 }
 
 .header {
-    @apply fixed top-0 w-full flex justify-center bg-zinc-900/60 backdrop-blur-sm items-center p-4 max-w-5xl mx-auto sm:justify-between
+    @apply fixed z-[9999] top-0 w-full flex justify-center bg-zinc-900/60 backdrop-blur-sm items-center p-4 max-w-5xl mx-auto sm:justify-between
 }
 
 .main {

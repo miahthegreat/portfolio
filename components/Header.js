@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 const Header = () => {
   return (

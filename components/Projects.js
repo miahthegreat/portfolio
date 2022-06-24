@@ -1,5 +1,6 @@
 import React from "react";
 import ProjectCard from "./ProjectCard";
+import Parallax from "./Parallax";
 
 const projects = [
   {
@@ -29,14 +30,16 @@ const projects = [
 const Projects = () => {
   return (
     <div className="projects" id="projects">
-      <div className="flex flex-col gap-5">
-        <h1 className="font-mono text-3xl text-gray-50">Featured Projects</h1>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          {projects.map((project) => {
-            return <ProjectCard key={project.title} project={project} />;
-          })}
+      <Parallax>
+        <div className="flex flex-col gap-5">
+          <h1 className="font-mono text-3xl text-gray-50">Featured Projects</h1>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            {projects.map((project) => {
+              return <ProjectCard key={project.title} project={project} />;
+            })}
+          </div>
         </div>
-      </div>
+      </Parallax>
     </div>
   );
 };
