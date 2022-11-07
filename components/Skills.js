@@ -17,8 +17,8 @@ const Skills = () => {
     <div className="skills" id="skills">
       <Parallax>
         <div className="flex flex-col gap-5">
-          <h1 className="font-mono text-3xl text-gray-50">Skills</h1>
-          <ul className="grid grid-cols-3 gap-5 font-mono text-gray-50 md:flex">
+          <h1 className="heading">Skills</h1>
+          <ul className="grid grid-cols-3 gap-5 font-mono md:flex">
             <li className="skill-li">
               <span className="text-sm">HTML5</span>
               <SiHtml5 className="text-[#d74a23]" />

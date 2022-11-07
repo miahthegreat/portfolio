@@ -32,7 +32,7 @@ const Projects = () => {
     <div className="projects" id="projects">
       <Parallax>
         <div className="flex flex-col gap-5">
-          <h1 className="font-mono text-3xl text-gray-50">Featured Projects</h1>
+          <h1 className="heading">Featured Projects</h1>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             {projects.map((project) => {
               return <ProjectCard key={project.title} project={project} />;

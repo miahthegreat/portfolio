@@ -21,13 +21,10 @@ export default function Home() {
         <meta name="author" content="Jeremiah Schmid" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="mx-auto min-h-screen max-w-5xl">
-        <Header />
-        <Main />
-        <Skills />
-        <Projects />
-        <Contact />
-      </div>
+      <Main />
+      <Skills />
+      <Projects />
+      <Contact />
     </>
   );
 }

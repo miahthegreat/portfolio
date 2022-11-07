@@ -10,7 +10,7 @@ const ProjectCard = ({ project }) => {
         color === "green" ? "from-green-300 to-green-600" : ""
       } p-[.05rem]`}
     >
-      <div className="flex h-full flex-col justify-between gap-6 rounded-md bg-black p-2 text-gray-50">
+      <div className="flex h-full flex-col justify-between gap-6 rounded-md bg-white p-2 shadow-lg dark:bg-black">
         <div>
           <h3 className="text-base font-bold">{title}</h3>
           <p className="text-sm text-gray-400">{description}</p>

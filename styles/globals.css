@@ -2,42 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    @apply bg-zinc-900 scroll-smooth scroll-pt-[72px]
+html,
+body,
+canvas {
+  @apply m-0 min-h-screen scroll-pt-[72px] scroll-smooth bg-zinc-50 p-0 dark:bg-zinc-900;
 }
 
 .header {
-    @apply fixed z-[9999] top-0 w-full flex justify-center bg-zinc-900/60 backdrop-blur-sm items-center p-4 max-w-5xl mx-auto sm:justify-between
+  @apply fixed top-0 z-[9999] mx-auto flex w-full max-w-5xl items-center justify-center bg-zinc-50/60 p-4 backdrop-blur-sm dark:bg-zinc-900/60 sm:justify-between;
 }
 
 .main {
-    @apply flex justify-between mt-16 px-8 py-12 max-w-5xl mx-auto items-center
+  @apply mx-auto flex max-w-5xl items-center justify-between px-8 py-12 pt-28;
 }
 
-.skills, .projects, .contact {
-    @apply px-8 py-12 max-w-5xl mx-auto
+.main__blog {
+  @apply mx-auto max-w-5xl items-center justify-between px-8 py-12 pt-24;
+}
+
+.skills,
+.projects,
+.contact {
+  @apply mx-auto max-w-5xl px-8 py-12;
 }
 
 .skill-li {
-    @apply flex flex-col items-center justify-center gap-2 text-center text-4xl
+  @apply flex flex-col items-center justify-center gap-2 text-center text-4xl;
 }
 
 .nav-links {
-    @apply flex justify-start gap-3
+  @apply flex justify-start gap-3;
 }
 
 .external-links {
-    @apply justify-end gap-3 hidden sm:flex
+  @apply flex justify-start gap-8;
 }
 
-.nav-link, .external-link {
-    @apply text-gray-300 font-mono hover:text-gray-100 px-2 hover:bg-gray-700/50 hover:cursor-pointer hover:rounded-md transition duration-200 ease-in rounded-md text-xl
+.nav-link,
+.external-link {
+  @apply rounded-md px-2 font-mono text-xl text-zinc-500 transition duration-200 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50;
 }
 
 .external-link {
-    @apply rounded-md p-2 hover:rounded-md text-2xl
+  @apply rounded-md p-2 text-3xl hover:rounded-md;
 }
 
 .app-link {
-    @apply flex items-center justify-center bg-slate-700 px-2 hover:bg-slate-800 transition duration-200 ease-in rounded-md
+  @apply flex items-center justify-center rounded-md bg-zinc-700 px-2 text-zinc-50 transition duration-200 ease-in hover:bg-zinc-800;
+}
+
+.heading {
+  @apply font-mono text-3xl text-zinc-900 dark:text-zinc-50;
+}
+
+.heading__sub1 {
+  @apply font-sans text-lg tracking-widest text-zinc-500 dark:text-zinc-400;
+}
+
+.heading__sub2 {
+  @apply text-sm font-light text-zinc-600 dark:text-zinc-500;
 }

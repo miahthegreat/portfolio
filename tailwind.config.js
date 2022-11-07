@@ -23,5 +23,5 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("prettier-plugin-tailwindcss"),
   ],
-  darkMode: "media",
+  darkMode: "class",
 };

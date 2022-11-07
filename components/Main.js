@@ -7,11 +7,9 @@ const Main = () => {
   return (
     <div className="main">
       <Parallax>
-        <h1 className="font-mono text-3xl text-gray-50">Jeremiah</h1>
-        <h3 className="font-sans text-lg tracking-widest text-gray-400">
-          Frontend Web Developer
-        </h3>
-        <p className="text-sm font-light text-gray-500">
+        <h1 className="heading">Jeremiah</h1>
+        <h3 className="heading__sub1">Frontend Web Developer</h3>
+        <p className="heading__sub2">
           Building Web apps, proficient in Frontend. Writing articles on my blog
           sometimes.
         </p>

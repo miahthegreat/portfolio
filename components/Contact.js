@@ -12,13 +12,13 @@ const Contact = () => {
   return (
     <div className="contact" id="contact">
       <Parallax>
-        <h1 className="mb-8 font-mono text-3xl text-gray-50">Get in touch</h1>
-        <ul className="flex items-center justify-center gap-3">
+        <h1 className="heading mb-8">Get in touch</h1>
+        <ul className="external-links">
           <a
             href="https://github.com/miahthegreat"
             target="_blank"
             rel="noreferrer"
-            className="external-link md:hidden"
+            className="external-link"
           >
             <li>
               <SiGithub />
