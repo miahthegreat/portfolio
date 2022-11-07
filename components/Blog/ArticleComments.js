@@ -1,4 +1,4 @@
-import Date from "./date";
+import Date from "./Date";
 import { MdAddComment } from "react-icons/md";
 import { useStateContext } from "../../context/StateContext";
 
