@@ -44,20 +44,20 @@ const Header = () => {
       <ul className="external-links">
         <li className="">
           <button
-            className="relative flex h-10 w-10 items-center rounded-md px-2 font-mono text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50"
+            className="relative flex h-8 w-8 items-center rounded-md px-2 font-mono text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50"
             onClick={() => {
               setTheme(localTheme === "dark" ? "light" : "dark");
             }}
           >
             <FaMoon
-              className={`absolute inset-0 top-[50%] mx-auto h-6 w-6 -translate-y-[50%] transform transition-transform duration-300 ${
+              className={`absolute inset-0 top-[50%] mx-auto h-4 w-4 -translate-y-[50%] transform transition-transform duration-300 ${
                 localTheme === "dark"
                   ? "rotate-180 scale-0"
                   : "rotate-0 scale-100"
               }`}
             />{" "}
             <FaSun
-              className={`absolute inset-0 top-[50%] mx-auto h-6 w-6 -translate-y-[50%] transform transition-transform duration-300 ${
+              className={`absolute inset-0 top-[50%] mx-auto h-4 w-4 -translate-y-[50%] transform transition-transform duration-300 ${
                 localTheme === "dark"
                   ? "rotate-180 scale-100"
                   : "rotate-0 scale-0"

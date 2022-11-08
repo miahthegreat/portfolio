@@ -9,7 +9,7 @@ canvas {
 }
 
 .header {
-  @apply fixed top-0 z-[9999] mx-auto flex w-full max-w-5xl items-center justify-center bg-zinc-50/60 p-4 backdrop-blur-sm dark:bg-zinc-900/60 sm:justify-between;
+  @apply fixed top-0 z-[9999] mx-auto flex w-full max-w-5xl items-center justify-between bg-zinc-50/60 p-4 backdrop-blur-sm dark:bg-zinc-900/60;
 }
 
 .main {
@@ -40,7 +40,7 @@ canvas {
 
 .nav-link,
 .external-link {
-  @apply rounded-md px-2 font-mono text-xl text-zinc-500 transition duration-200 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50;
+  @apply rounded-md px-2 font-mono text-sm text-zinc-500 transition duration-200 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50 sm:text-base md:text-xl;
 }
 
 .external-link {

@@ -14,5 +14,5 @@ export default function CoverImage({ title, imageObject, slug }) {
     />
   );
 
-  return <div className="-mx-5 sm:mx-0">{image}</div>;
+  return <div className="">{image}</div>;
 }
