@@ -20,9 +20,7 @@ export default function Post({ post, morePosts, preview }) {
   return (
     <Layout preview={preview}>
       <Head>
-        <title>
-          {post.title} | {CMS_NAME}
-        </title>
+        <title>{CMS_NAME}</title>
         <meta name="description" content="Jeremiah Schmid's Blog" />
         <meta
           name="keywords"
@@ -37,9 +35,6 @@ export default function Post({ post, morePosts, preview }) {
         ) : (
           <>
             <article>
-              <Head>
-                <title>{CMS_NAME}</title>
-              </Head>
               <ArticleHeader
                 title={post.title}
                 coverImage={post.coverImage}
