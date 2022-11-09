@@ -31,7 +31,7 @@ canvas {
 }
 
 .nav-links {
-  @apply flex justify-start gap-3;
+  @apply hidden justify-start gap-3 md:flex;
 }
 
 .external-links {
@@ -61,4 +61,12 @@ canvas {
 
 .heading__sub2 {
   @apply text-sm font-light text-zinc-600 dark:text-zinc-500;
+}
+
+.theme-btn {
+  @apply relative flex h-10 w-10 items-center rounded-md px-2 font-mono text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50;
+}
+
+.theme-icon {
+  @apply absolute inset-0 top-[50%] mx-auto h-6 w-6 -translate-y-[50%] transform transition-transform duration-300;
 }

@@ -19,6 +19,16 @@ export default function Post({ post, morePosts, preview }) {
   }
   return (
     <Layout preview={preview}>
+      <Head>
+        <title>{post.title} | Blog</title>
+        <meta name="description" content="Jeremiah Schmid's Blog" />
+        <meta
+          name="keywords"
+          content="Web, Developer, HTML, CSS, React, Next.js, Firebase, Javascript, TailwindCSS, Tailwind, Node.js, Node, GraphQL"
+        />
+        <meta name="author" content="Jeremiah Schmid" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="px-4">
         {router.isFallback ? (
           <ArticleTitle>Loading…</ArticleTitle>

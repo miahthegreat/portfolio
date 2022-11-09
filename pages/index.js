@@ -10,10 +10,7 @@ export default function Home() {
     <>
       <Head>
         <title>Jeremiah | Frontend Web Developer</title>
-        <meta
-          name="description"
-          content="Jeremiah Schmid's Frontend Web Developer Portfolio"
-        />
+        <meta name="description" content="Jeremiah Schmid's Portfolio" />
         <meta
           name="keywords"
           content="Web, Developer, HTML, CSS, React, Next.js, Firebase, Javascript, TailwindCSS, Tailwind, Node.js, Node, GraphQL"
