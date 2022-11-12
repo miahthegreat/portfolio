@@ -77,7 +77,7 @@ export default function MobilePopover() {
             <Popover.Panel className="absolute left-1/2 z-10 mt-2 w-screen max-w-[15rem] -translate-x-11 transform px-2 sm:px-0">
               {({ close }) => (
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                  <div className="relative grid gap-6 bg-zinc-50 px-3 py-2 dark:bg-zinc-800 sm:gap-8 sm:p-4">
+                  <div className="relative grid gap-6 bg-zinc-50 p-4 dark:bg-zinc-800 sm:gap-8 sm:p-5">
                     {solutions.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a

@@ -13,7 +13,6 @@ import CommentModal from "../../components/Blog/CommentModal";
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
-  console.log(post, morePosts, preview);
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
