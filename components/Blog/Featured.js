@@ -12,7 +12,7 @@ export default function Featured({
 }) {
   return (
     <section>
-      <h2 className="mb-8 font-mono text-5xl leading-tight tracking-wide text-zinc-900 dark:text-zinc-50 md:text-7xl">
+      <h2 className="mb-8 text-5xl leading-tight tracking-wide text-zinc-900 dark:text-zinc-50 md:text-7xl">
         Featured Post
       </h2>
       <Link as={`/blog/${slug}`} href="/blog/[slug]">

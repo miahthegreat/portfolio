@@ -40,7 +40,7 @@ canvas {
 
 .nav-link,
 .external-link {
-  @apply rounded-md px-2 font-mono text-sm text-zinc-500 transition duration-200 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50 sm:text-base md:text-xl;
+  @apply rounded-md px-2 text-sm text-zinc-500 transition duration-200 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50 sm:text-base md:text-xl;
 }
 
 .external-link {
@@ -52,11 +52,11 @@ canvas {
 }
 
 .heading {
-  @apply font-mono text-3xl text-zinc-900 dark:text-zinc-50;
+  @apply text-3xl text-zinc-900 dark:text-zinc-50;
 }
 
 .heading__sub1 {
-  @apply font-sans text-lg tracking-widest text-zinc-500 dark:text-zinc-400;
+  @apply text-lg tracking-widest text-zinc-500 dark:text-zinc-400;
 }
 
 .heading__sub2 {
@@ -64,7 +64,7 @@ canvas {
 }
 
 .theme-btn {
-  @apply relative flex h-10 w-10 items-center rounded-md px-2 font-mono text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50;
+  @apply relative flex h-10 w-10 items-center rounded-md px-2 text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50;
 }
 
 .theme-icon {

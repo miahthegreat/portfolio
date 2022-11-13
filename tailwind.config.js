@@ -9,6 +9,11 @@ module.exports = {
       animation: {
         marquee: "marquee 25s linear alternate infinite",
       },
+      fontFamily: {
+        fira: ["Fira Sans"],
+        poppins: ["Poppins"],
+        plexmono: ["IBM Plex Mono"],
+      },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0%)" },
