@@ -2,6 +2,7 @@ import ArticleAvatar from "./ArticleAvatar";
 import Date from "./Date";
 import CoverImage from "./CoverImage";
 import ArticleTitle from "./ArticleTitle";
+import Parallax from "../../components/Parallax";
 
 export default function ArticleHeader({ title, coverImage, date, author }) {
   return (

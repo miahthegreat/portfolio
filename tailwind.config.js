@@ -12,7 +12,7 @@ module.exports = {
       fontFamily: {
         fira: ["Fira Sans"],
         poppins: ["Poppins"],
-        plexmono: ["IBM Plex Mono"],
+        plexmono: ["Syne Mono"],
       },
       keyframes: {
         marquee: {

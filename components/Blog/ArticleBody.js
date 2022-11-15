@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react";
+import Parallax from "../Parallax";
 
 export default function ArticleBody({ content }) {
   return (

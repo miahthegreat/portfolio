@@ -9,7 +9,7 @@ const fonts = [
     name: "Poppins",
   },
   {
-    name: "IBM Plex Mono",
+    name: "Syne Mono",
   },
 ];
 
@@ -23,7 +23,10 @@ const FontPicker = () => {
   return (
     <RadioGroup value={font} onChange={setFont}>
       <RadioGroup.Label className="sr-only"> Font Family </RadioGroup.Label>
-      <div className="space-y-4">
+      <RadioGroup.Label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+        Choose a font
+      </RadioGroup.Label>
+      <div className="mt-4 space-y-4">
         {fonts.map((item) => (
           <RadioGroup.Option
             key={item.name}
@@ -46,9 +49,9 @@ const FontPicker = () => {
                       as="span"
                       className={`font-medium text-zinc-900 dark:text-zinc-50 ${
                         item.name === "Fira" ? "font-fira" : ""
-                      } ${
-                        item.name === "IBM Plex Mono" ? "font-plexmono" : ""
-                      } ${item.name === "Poppins" ? "font-poppins" : ""}
+                      } ${item.name === "Syne Mono" ? "font-plexmono" : ""} ${
+                        item.name === "Poppins" ? "font-poppins" : ""
+                      }
                       `}
                     >
                       {item.name}

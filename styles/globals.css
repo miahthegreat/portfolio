@@ -52,7 +52,7 @@ canvas {
 }
 
 .heading {
-  @apply text-3xl text-zinc-900 dark:text-zinc-50;
+  @apply text-3xl;
 }
 
 .heading__sub1 {

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 import ErrorPage from "next/error";
 import MoreStories from "../../components/Blog/MoreStories";
 import ArticleComments from "../../components/Blog/ArticleComments";

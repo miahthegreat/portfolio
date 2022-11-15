@@ -30,7 +30,7 @@ const projects = [
 const Projects = () => {
   return (
     <div className="projects" id="projects">
-      <Parallax>
+      <div>
         <div className="flex flex-col gap-5">
           <h1 className="heading">Featured Projects</h1>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -39,7 +39,7 @@ const Projects = () => {
             })}
           </div>
         </div>
-      </Parallax>
+      </div>
     </div>
   );
 };

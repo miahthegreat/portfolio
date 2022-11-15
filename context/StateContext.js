@@ -9,6 +9,11 @@ export const StateContext = ({ children }) => {
   const [font, setFont] = useState({
     name: "Fira",
   });
+  const [accent, setAccent] = useState({
+    name: "Purple",
+    bgColor: "bg-purple-500",
+    selectedColor: "ring-purple-500",
+  });
 
   return (
     <Context.Provider
@@ -17,6 +22,8 @@ export const StateContext = ({ children }) => {
         setCommentModalOpen,
         font,
         setFont,
+        accent,
+        setAccent,
       }}
     >
       {children}

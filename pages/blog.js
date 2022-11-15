@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { motion } from "framer-motion";
 import Featured from "../components/Blog/Featured";
 import MoreStories from "../components/Blog/MoreStories";
 import { getAllPostsForHome } from "../lib/api";

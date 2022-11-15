@@ -11,7 +11,7 @@ import Parallax from "./Parallax";
 const Contact = () => {
   return (
     <div className="contact" id="contact">
-      <Parallax>
+      <div>
         <h1 className="heading mb-8">Get in touch</h1>
         <ul className="external-links">
           <a
@@ -65,7 +65,7 @@ const Contact = () => {
             </li>
           </a>
         </ul>
-      </Parallax>
+      </div>
     </div>
   );
 };

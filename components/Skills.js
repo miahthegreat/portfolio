@@ -1,4 +1,3 @@
-import React from "react";
 import {
   SiCss3,
   SiHtml5,
@@ -10,14 +9,40 @@ import {
   SiReact,
   SiTailwindcss,
 } from "react-icons/si";
-import Parallax from "./Parallax";
+import { useStateContext } from "../context/StateContext";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const Skills = () => {
+  const { accent } = useStateContext();
   return (
     <div className="skills" id="skills">
-      <Parallax>
+      <div>
         <div className="flex flex-col gap-5">
-          <h1 className="heading">Skills</h1>
+          <h1
+            className={classNames(
+              accent.name === "Purple"
+                ? "text-purple-600 dark:text-purple-400"
+                : "text-zinc-900 dark:text-zinc-50",
+              accent.name === "Pink"
+                ? "text-pink-600 dark:text-pink-300"
+                : "text-zinc-900 dark:text-zinc-50",
+              accent.name === "Blue"
+                ? "text-blue-600 dark:text-blue-300"
+                : "text-zinc-900 dark:text-zinc-50",
+              accent.name === "Green"
+                ? "text-green-600 dark:text-green-300"
+                : "text-zinc-900 dark:text-zinc-50",
+              accent.name === "Yellow"
+                ? "text-yellow-600 dark:text-yellow-300"
+                : "text-zinc-900 dark:text-zinc-50",
+              "heading"
+            )}
+          >
+            Skills
+          </h1>
           <ul className="grid grid-cols-3 gap-5 md:flex">
             <li className="skill-li">
               <span className="text-sm">HTML5</span>
@@ -58,7 +83,7 @@ const Skills = () => {
             </li>
           </ul>
         </div>
-      </Parallax>
+      </div>
     </div>
   );
 };
