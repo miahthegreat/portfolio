@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
+import { useEffect } from "react";
 import { useStateContext } from "../../context/StateContext";
 
 const colors = [
@@ -12,9 +12,9 @@ const colors = [
   { name: "Blue", bgColor: "bg-blue-500", selectedColor: "ring-blue-500" },
   { name: "Green", bgColor: "bg-green-500", selectedColor: "ring-green-500" },
   {
-    name: "Yellow",
-    bgColor: "bg-yellow-500",
-    selectedColor: "ring-yellow-500",
+    name: "Orange",
+    bgColor: "bg-orange-500",
+    selectedColor: "ring-orange-500",
   },
 ];
 
@@ -24,6 +24,12 @@ function classNames(...classes) {
 
 const AccentPicker = () => {
   const { accent, setAccent } = useStateContext();
+
+  useEffect(() => {
+    if (accent) {
+      localStorage.setItem("accent", JSON.stringify(accent));
+    }
+  }, [accent]);
 
   return (
     <RadioGroup value={accent} onChange={setAccent}>
@@ -38,6 +44,7 @@ const AccentPicker = () => {
             className={({ active, checked }) =>
               classNames(
                 color.selectedColor,
+                accent.name === color.name ? "ring ring-offset-1" : "",
                 active && checked ? "ring ring-offset-1" : "",
                 !active && checked ? "ring-2" : "",
                 "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"

@@ -70,3 +70,7 @@ canvas {
 .theme-icon {
   @apply absolute inset-0 top-[50%] mx-auto h-6 w-6 -translate-y-[50%] transform transition-transform duration-300;
 }
+
+figure > img {
+  @apply mx-auto max-h-[500px] rounded-md shadow-lg ring-2 ring-zinc-900/20;
+}

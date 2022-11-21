@@ -14,6 +14,7 @@ const Header = () => {
       setLocalTheme(localStorage.getItem("theme"));
     }
   }, [theme]);
+
   return (
     <div className="header">
       {/* Desktop Links */}
@@ -56,6 +57,10 @@ const Header = () => {
               className="theme-btn"
               onClick={() => {
                 setTheme(localTheme === "dark" ? "light" : "dark");
+                localStorage.setItem(
+                  "theme",
+                  localTheme === "dark" ? "light" : "dark"
+                );
               }}
             >
               <FaMoon

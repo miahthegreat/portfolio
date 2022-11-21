@@ -9,9 +9,9 @@ const AppLayout = ({ children }) => {
     <AnimatePresence exitBeforeEnter>
       <div
         className={`linear relative mx-auto min-h-screen max-w-5xl bg-zinc-50 dark:bg-zinc-900
-      ${font.name === "Fira" ? "font-fira" : ""}
-      ${font.name === "Syne Mono" ? "font-plexmono" : ""}
-      ${font.name === "Poppins" ? "font-poppins" : ""}
+      ${font?.name === "Fira" ? "font-fira" : ""}
+      ${font?.name === "Syne Mono" ? "font-plexmono" : ""}
+      ${font?.name === "Poppins" ? "font-poppins" : ""}
       `}
       >
         <Header />

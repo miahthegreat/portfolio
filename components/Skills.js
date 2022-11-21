@@ -23,21 +23,17 @@ const Skills = () => {
         <div className="flex flex-col gap-5">
           <h1
             className={classNames(
-              accent.name === "Purple"
+              accent?.name === "Purple"
                 ? "text-purple-600 dark:text-purple-400"
-                : "text-zinc-900 dark:text-zinc-50",
-              accent.name === "Pink"
-                ? "text-pink-600 dark:text-pink-300"
-                : "text-zinc-900 dark:text-zinc-50",
-              accent.name === "Blue"
-                ? "text-blue-600 dark:text-blue-300"
-                : "text-zinc-900 dark:text-zinc-50",
-              accent.name === "Green"
-                ? "text-green-600 dark:text-green-300"
-                : "text-zinc-900 dark:text-zinc-50",
-              accent.name === "Yellow"
-                ? "text-yellow-600 dark:text-yellow-300"
-                : "text-zinc-900 dark:text-zinc-50",
+                : "",
+              accent?.name === "Pink" ? "text-pink-600 dark:text-pink-400" : "",
+              accent?.name === "Blue" ? "text-blue-600 dark:text-blue-400" : "",
+              accent?.name === "Green"
+                ? "text-green-600 dark:text-green-400"
+                : "",
+              accent?.name === "Orange"
+                ? "text-orange-600 dark:text-orange-400"
+                : "",
               "heading"
             )}
           >

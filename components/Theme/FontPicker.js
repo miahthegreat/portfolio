@@ -1,4 +1,5 @@
 import { RadioGroup } from "@headlessui/react";
+import { useEffect } from "react";
 import { useStateContext } from "../../context/StateContext";
 
 const fonts = [
@@ -20,6 +21,12 @@ function classNames(...classes) {
 const FontPicker = () => {
   const { font, setFont } = useStateContext();
 
+  useEffect(() => {
+    if (font) {
+      localStorage.setItem("font", JSON.stringify(font));
+    }
+  });
+
   return (
     <RadioGroup value={font} onChange={setFont}>
       <RadioGroup.Label className="sr-only"> Font Family </RadioGroup.Label>
@@ -36,7 +43,9 @@ const FontPicker = () => {
                 checked
                   ? "border-transparent"
                   : "border-gray-300 dark:border-zinc-700",
-                active ? "ring-2 ring-zinc-500 dark:ring-zinc-100" : "",
+                active || item.name === font.name
+                  ? "ring-2 ring-zinc-500 dark:ring-zinc-100"
+                  : "",
                 "relative block cursor-pointer rounded-lg bg-zinc-50 px-6 py-4 shadow-lg focus:outline-none dark:bg-zinc-900 sm:flex sm:justify-between"
               )
             }

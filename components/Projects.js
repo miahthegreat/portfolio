@@ -1,6 +1,6 @@
 import React from "react";
+import { useStateContext } from "../context/StateContext";
 import ProjectCard from "./ProjectCard";
-import Parallax from "./Parallax";
 
 const projects = [
   {
@@ -27,12 +27,34 @@ const projects = [
   },
 ];
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
 const Projects = () => {
+  const { accent } = useStateContext();
   return (
     <div className="projects" id="projects">
       <div>
         <div className="flex flex-col gap-5">
-          <h1 className="heading">Featured Projects</h1>
+          <h1
+            className={classNames(
+              accent?.name === "Purple"
+                ? "text-purple-600 dark:text-purple-400"
+                : "",
+              accent?.name === "Pink" ? "text-pink-600 dark:text-pink-400" : "",
+              accent?.name === "Blue" ? "text-blue-600 dark:text-blue-400" : "",
+              accent?.name === "Green"
+                ? "text-green-600 dark:text-green-400"
+                : "",
+              accent?.name === "Orange"
+                ? "text-orange-600 dark:text-orange-400"
+                : "",
+              "heading"
+            )}
+          >
+            Featured Projects
+          </h1>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             {projects.map((project) => {
               return <ProjectCard key={project.title} project={project} />;

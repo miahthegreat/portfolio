@@ -39,9 +39,9 @@ const CommentModal = ({ _id }) => {
             >
               <Dialog.Panel
                 className={`relative my-8 w-full max-w-xl transform overflow-hidden rounded-lg bg-zinc-50 p-6 px-4 pt-5 pb-4 text-left shadow-xl transition-all dark:bg-zinc-800 md:max-w-2xl lg:max-w-4xl
-              ${font.name === "Fira" ? "font-fira" : ""}
-              ${font.name === "Poppins" ? "font-poppins" : ""}
-              ${font.name === "Syne Mono" ? "font-plexmono" : ""}
+              ${font?.name === "Fira" ? "font-fira" : ""}
+              ${font?.name === "Poppins" ? "font-poppins" : ""}
+              ${font?.name === "Syne Mono" ? "font-plexmono" : ""}
               `}
               >
                 <div className="absolute top-0 right-0 block pt-4 pr-4">

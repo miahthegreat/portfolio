@@ -6,13 +6,35 @@ import {
   SiSpotify,
   SiTwitter,
 } from "react-icons/si";
-import Parallax from "./Parallax";
+import { useStateContext } from "../context/StateContext";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const Contact = () => {
+  const { accent } = useStateContext();
   return (
     <div className="contact" id="contact">
       <div>
-        <h1 className="heading mb-8">Get in touch</h1>
+        <h1
+          className={classNames(
+            accent?.name === "Purple"
+              ? "text-purple-600 dark:text-purple-400"
+              : "",
+            accent?.name === "Pink" ? "text-pink-600 dark:text-pink-400" : "",
+            accent?.name === "Blue" ? "text-blue-600 dark:text-blue-400" : "",
+            accent?.name === "Green"
+              ? "text-green-600 dark:text-green-400"
+              : "",
+            accent?.name === "Orange"
+              ? "text-orange-600 dark:text-orange-400"
+              : "",
+            "heading mb-8"
+          )}
+        >
+          Get in touch
+        </h1>
         <ul className="external-links">
           <a
             href="https://github.com/miahthegreat"
