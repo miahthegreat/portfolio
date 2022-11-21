@@ -19,7 +19,7 @@ function classNames(...classes) {
 }
 
 const FontPicker = () => {
-  const { font, setFont } = useStateContext();
+  const { font, setFont, accent } = useStateContext();
 
   useEffect(() => {
     if (font) {
@@ -40,13 +40,9 @@ const FontPicker = () => {
             value={item}
             className={({ checked, active }) =>
               classNames(
-                checked
-                  ? "border-transparent"
-                  : "border-gray-300 dark:border-zinc-700",
-                active || item.name === font.name
-                  ? "ring-2 ring-zinc-500 dark:ring-zinc-100"
-                  : "",
-                "relative block cursor-pointer rounded-lg bg-zinc-50 px-6 py-4 shadow-lg focus:outline-none dark:bg-zinc-900 sm:flex sm:justify-between"
+                item.name === font.name ? accent.selectedColor : "",
+                accent.hoverColor,
+                "relative block cursor-pointer rounded-lg bg-zinc-50 px-6 py-4 shadow-lg focus:outline-none ui-active:ring-0 dark:bg-zinc-900 sm:flex sm:justify-between"
               )
             }
           >
@@ -56,26 +52,18 @@ const FontPicker = () => {
                   <span className="flex flex-col text-sm">
                     <RadioGroup.Label
                       as="span"
-                      className={`font-medium text-zinc-900 dark:text-zinc-50 ${
-                        item.name === "Fira" ? "font-fira" : ""
-                      } ${item.name === "Syne Mono" ? "font-plexmono" : ""} ${
-                        item.name === "Poppins" ? "font-poppins" : ""
-                      }
-                      `}
+                      className={classNames(
+                        "font-medium",
+                        item.name === "Fira" ? `font-fira` : "",
+                        item.name === "Syne Mono" ? "font-plexmono" : "",
+                        item.name === "Poppins" ? "font-poppins" : "",
+                        item.name === font.name ? accent.textColor : ""
+                      )}
                     >
                       {item.name}
                     </RadioGroup.Label>
-                    <RadioGroup.Description as="span" className="text-gray-500">
-                      <div></div>
-                    </RadioGroup.Description>
                   </span>
                 </span>
-                <RadioGroup.Description
-                  as="span"
-                  className="mt-2 flex text-sm sm:mt-0 sm:ml-4 sm:flex-col sm:text-right"
-                >
-                  <div></div>
-                </RadioGroup.Description>
                 <span
                   className={classNames(
                     active ? "border" : "border-2",

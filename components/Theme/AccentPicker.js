@@ -3,18 +3,40 @@ import { useEffect } from "react";
 import { useStateContext } from "../../context/StateContext";
 
 const colors = [
-  { name: "Pink", bgColor: "bg-pink-500", selectedColor: "ring-pink-500" },
+  {
+    name: "Pink",
+    bgColor: "bg-pink-700 dark:bg-pink-500",
+    selectedColor: "ring-pink-700 dark:ring-pink-500 ring-1",
+    textColor: "text-pink-700 dark:text-pink-500",
+    hoverColor: "hover:ring-2 hover:ring-pink-700 hover:dark:ring-pink-500",
+  },
   {
     name: "Purple",
-    bgColor: "bg-purple-500",
-    selectedColor: "ring-purple-500",
+    bgColor: "bg-purple-700 dark:bg-purple-500",
+    selectedColor: "ring-purple-700 dark:ring-purple-500 ring-1",
+    textColor: "text-purple-700 dark:text-purple-500",
+    hoverColor: "hover:ring-2 hover:ring-purple-700 hover:dark:ring-purple-500",
   },
-  { name: "Blue", bgColor: "bg-blue-500", selectedColor: "ring-blue-500" },
-  { name: "Green", bgColor: "bg-green-500", selectedColor: "ring-green-500" },
+  {
+    name: "Blue",
+    bgColor: "bg-blue-500",
+    selectedColor: "ring-blue-700 dark:ring-blue-500 ring-1",
+    textColor: "text-blue-700 dark:text-blue-500 ",
+    hoverColor: "hover:ring-2 hover:ring-blue-700 hover:dark:ring-blue-500",
+  },
+  {
+    name: "Green",
+    bgColor: "bg-green-700 dark:bg-green-500",
+    selectedColor: "ring-green-700 dark:ring-green-500 ring-1",
+    textColor: "text-green-700 dark:text-green-500 ",
+    hoverColor: "hover:ring-2 hover:ring-green-700 hover:dark:ring-green-500",
+  },
   {
     name: "Orange",
-    bgColor: "bg-orange-500",
-    selectedColor: "ring-orange-500",
+    bgColor: "bg-orange-700 dark:bg-orange-500",
+    selectedColor: "ring-orange-700 dark:ring-orange-500 ring-1",
+    textColor: "text-orange-700 dark:text-orange-500",
+    hoverColor: "hover:ring-2 hover:ring-orange-700 hover:dark:ring-orange-500",
   },
 ];
 
@@ -44,9 +66,7 @@ const AccentPicker = () => {
             className={({ active, checked }) =>
               classNames(
                 color.selectedColor,
-                accent.name === color.name ? "ring ring-offset-1" : "",
-                active && checked ? "ring ring-offset-1" : "",
-                !active && checked ? "ring-2" : "",
+                accent.name === color.name ? `ring ring-offset-1` : "",
                 "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
               )
             }

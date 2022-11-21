@@ -27,6 +27,7 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("prettier-plugin-tailwindcss"),
+    require("@headlessui/tailwindcss"),
   ],
   darkMode: "class",
 };

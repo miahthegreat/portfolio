@@ -32,6 +32,7 @@
     "swr": "^1.2.0"
   },
   "devDependencies": {
+    "@headlessui/tailwindcss": "^0.1.1",
     "@sanity/cli": "^2.25.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
