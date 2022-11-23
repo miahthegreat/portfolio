@@ -30,7 +30,9 @@ const FontPicker = () => {
   return (
     <RadioGroup value={font} onChange={setFont}>
       <RadioGroup.Label className="sr-only"> Font Family </RadioGroup.Label>
-      <RadioGroup.Label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+      <RadioGroup.Label
+        className={classNames("block text-sm font-medium", accent.textColor)}
+      >
         Choose a font
       </RadioGroup.Label>
       <div className="mt-4 space-y-4">
@@ -66,8 +68,8 @@ const FontPicker = () => {
                 </span>
                 <span
                   className={classNames(
-                    active ? "border" : "border-2",
-                    checked ? "border-zinc-500" : "border-transparent",
+                    active ? accent.selectedColor : "border-2",
+                    checked ? accent.selectedColor : "border-transparent",
                     "pointer-events-none absolute -inset-px rounded-lg"
                   )}
                   aria-hidden="true"
