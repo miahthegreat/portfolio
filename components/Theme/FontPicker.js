@@ -42,9 +42,10 @@ const FontPicker = () => {
             value={item}
             className={({ checked, active }) =>
               classNames(
-                item.name === font.name ? accent.selectedColor : "",
-                accent.hoverColor,
-                "relative block cursor-pointer rounded-lg bg-zinc-50 px-6 py-4 shadow-lg focus:outline-none ui-active:ring-0 dark:bg-zinc-900 sm:flex sm:justify-between"
+                item.name === font.name
+                  ? "cursor-not-allowed hover:ring-0"
+                  : accent.hoverColor,
+                "cursor relative block cursor-pointer rounded-lg bg-zinc-50 px-6 py-4 shadow-lg focus:outline-none dark:bg-zinc-900 sm:flex sm:justify-between"
               )
             }
           >
@@ -68,9 +69,8 @@ const FontPicker = () => {
                 </span>
                 <span
                   className={classNames(
-                    active ? accent.selectedColor : "border-2",
-                    checked ? accent.selectedColor : "border-transparent",
-                    "pointer-events-none absolute -inset-px rounded-lg"
+                    "pointer-events-none absolute -inset-px rounded-lg",
+                    item.name === font.name ? accent.selectedColor : ""
                   )}
                   aria-hidden="true"
                 />

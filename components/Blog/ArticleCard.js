@@ -2,6 +2,11 @@ import Date from "./Date";
 import CoverImage from "./CoverImage";
 import Link from "next/link";
 import { imageBuilder } from "../../lib/client";
+import { useStateContext } from "../../context/StateContext";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function ArticleCard({
   title,
@@ -11,9 +16,15 @@ export default function ArticleCard({
   author,
   slug,
 }) {
+  const { accent } = useStateContext();
   return (
     <Link as={`/blog/${slug}`} href="/blog/[slug]">
-      <div className="hover:shadow-medium group overflow-hidden rounded-lg bg-gray-50 pb-2 text-center shadow transition-shadow duration-200 ease-in hover:cursor-pointer dark:bg-gray-800 md:p-2">
+      <div
+        className={classNames(
+          accent?.bgColor,
+          "hover:shadow-medium group overflow-hidden rounded-lg pb-2 text-center shadow transition-shadow duration-200 ease-in hover:cursor-pointer md:p-2"
+        )}
+      >
         <div className="mb-5">
           <CoverImage
             slug={slug}

@@ -48,7 +48,7 @@ canvas {
 }
 
 .app-link {
-  @apply flex items-center justify-center rounded-md bg-zinc-700 px-2 text-zinc-50 transition duration-200 ease-in;
+  @apply mx-auto flex w-1/2 items-center justify-center rounded-md bg-zinc-700 px-2 text-zinc-50 transition duration-200 ease-in;
 }
 
 .heading {
