@@ -64,7 +64,7 @@ canvas {
 }
 
 .theme-btn {
-  @apply relative flex h-10 w-10 items-center rounded-md px-2 text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:bg-zinc-300/50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700/50 dark:hover:text-zinc-50;
+  @apply relative flex h-10 w-10 items-center rounded-md px-2 text-xl text-zinc-500 transition duration-300 ease-in hover:cursor-pointer hover:rounded-md hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50;
 }
 
 .theme-icon {

@@ -9,7 +9,10 @@ const colors = [
     selectedColor: "ring-pink-800 dark:ring-pink-400 ring-1",
     textColor: "text-pink-800 dark:text-pink-400",
     hoverColor: "hover:ring-1 hover:ring-pink-800 hover:dark:ring-pink-400",
+    hoverBgColor: "hover:bg-pink-800/50 hover:dark:bg-pink-400/50",
     gradientColor: "from-pink-300 to-pink-600",
+    focusRingColor:
+      "focus:ring-1 focus:outline-none focus:border-none focus:ring-pink-800 focus:dark:ring-pink-400",
   },
   {
     name: "Purple",
@@ -17,7 +20,10 @@ const colors = [
     selectedColor: "ring-purple-800 dark:ring-purple-400 ring-1",
     textColor: "text-purple-800 dark:text-purple-400",
     hoverColor: "hover:ring-1 hover:ring-purple-800 hover:dark:ring-purple-400",
+    hoverBgColor: "hover:bg-purple-800/50 hover:dark:bg-purple-400/50",
     gradientColor: "from-purple-300 to-purple-600",
+    focusRingColor:
+      "focus:ring-1 focus:outline-none focus:border-none focus:ring-purple-800 focus:dark:ring-purple-400",
   },
   {
     name: "Blue",
@@ -25,7 +31,10 @@ const colors = [
     selectedColor: "ring-blue-800 dark:ring-blue-400 ring-1",
     textColor: "text-blue-800 dark:text-blue-400 ",
     hoverColor: "hover:ring-1 hover:ring-blue-800 hover:dark:ring-blue-400",
+    hoverBgColor: "hover:bg-blue-800/50 hover:dark:bg-blue-400/50",
     gradientColor: "from-blue-300 to-blue-600",
+    focusRingColor:
+      "focus:ring-1 focus:outline-none focus:border-none focus:ring-blue-800 focus:dark:ring-blue-400",
   },
   {
     name: "Green",
@@ -33,7 +42,10 @@ const colors = [
     selectedColor: "ring-green-800 dark:ring-green-400 ring-1",
     textColor: "text-green-800 dark:text-green-400 ",
     hoverColor: "hover:ring-1 hover:ring-green-800 hover:dark:ring-green-400",
+    hoverBgColor: "hover:bg-green-800/50 hover:dark:bg-green-400/50",
     gradientColor: "from-green-300 to-green-600",
+    focusRingColor:
+      "focus:ring-1 focus:outline-none focus:border-none focus:ring-green-800 focus:dark:ring-green-400",
   },
   {
     name: "Orange",
@@ -41,7 +53,10 @@ const colors = [
     selectedColor: "ring-orange-800 dark:ring-orange-400 ring-1",
     textColor: "text-orange-800 dark:text-orange-400",
     hoverColor: "hover:ring-1 hover:ring-orange-800 hover:dark:ring-orange-400",
+    hoverBgColor: "hover:bg-orange-800/50 hover:dark:bg-orange-400/50",
     gradientColor: "from-orange-300 to-orange-600",
+    focusRingColor:
+      "focus:ring-1 focus:outline-none focus:border-none focus:ring-orange-800 focus:dark:ring-orange-400",
   },
 ];
 

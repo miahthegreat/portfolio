@@ -165,7 +165,10 @@ const Header = () => {
         <ul className="external-links">
           <li className="">
             <button
-              className="theme-btn"
+              className={classNames(
+                "theme-btn",
+                accent ? accent.hoverBgColor : ""
+              )}
               onClick={() => {
                 setTheme(localTheme === "dark" ? "light" : "dark");
                 localStorage.setItem(

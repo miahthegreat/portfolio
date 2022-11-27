@@ -1,9 +1,10 @@
 import Date from "./Date";
 import { MdAddComment } from "react-icons/md";
 import { useStateContext } from "../../context/StateContext";
+import classNames from "classnames";
 
 export default function ArticleComments({ comments = [] }) {
-  const { setCommentModalOpen } = useStateContext();
+  const { setCommentModalOpen, accent } = useStateContext();
   return (
     <>
       <div className="mt-10 mb-4 flex items-center gap-4 leading-tight tracking-wider">
@@ -23,12 +24,28 @@ export default function ArticleComments({ comments = [] }) {
       </div>
       <ul className="border-b">
         {comments?.map(({ _id, _createdAt, name, email, comment }) => (
-          <li key={_id} className="mb-5 rounded-lg border-2 p-8">
+          <li
+            key={_id}
+            className={classNames(
+              "mb-5 rounded-lg p-8",
+              accent ? accent.selectedColor : ""
+            )}
+          >
             <div className="flex items-center">
-              <h4 className="text-primary dark:text-neutral mb-2 max-w-max rounded-full bg-gray-100 px-4 py-2 leading-tight dark:bg-gray-700">
+              <h4
+                className={classNames(
+                  "mb-2 max-w-max rounded-full px-4 py-2 leading-tight text-zinc-900 dark:text-zinc-50",
+                  accent ? accent.selectedColor : ""
+                )}
+              >
                 <a href={`mailto:${email}`}>{name}</a>
               </h4>
-              <div className="mb-2 max-w-max px-4 py-2 text-xs uppercase leading-tight tracking-wider text-gray-400/90">
+              <div
+                className={classNames(
+                  "mb-2 max-w-max px-4 py-2 text-xs uppercase leading-tight tracking-wider",
+                  accent ? accent.textColor : ""
+                )}
+              >
                 <spam>Posted </spam>
                 <Date dateString={_createdAt} />
               </div>
