@@ -10,11 +10,13 @@ export const TechCard = ({ index, icon, title }) => {
       className="green-pink-gradient p-[1px] rounded-lg shadow-card"
     >
       <div className="bg-tertiary rounded-lg p-2 flex justify-evenly items-center flex-col">
-        <img
-          src={icon.src}
-          alt="web-development"
-          className="w-12 h-12 object-contain"
-        />
+        <picture>
+          <img
+            src={icon.src}
+            alt="web-development"
+            className="w-12 h-12 object-contain"
+          />
+        </picture>
       </div>
     </motion.div>
   );

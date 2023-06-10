@@ -23,7 +23,9 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo.src} alt="logo" className="w-12 h-12" />
+          <picture>
+            <img src={logo.src} alt="logo" className="w-12 h-12" />
+          </picture>
           <p className="text-white text-[18px] sm:text-sm md:text-[18px] font-bold cursor-pointer flex">
             Jeremiah&nbsp;
             <span className="sm:block hidden">|&nbsp;Full Stack Developer</span>
@@ -43,22 +45,26 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center relative">
-          <img
-            src={close.src}
-            alt="menu"
-            className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
-              toggle ? "rotate-0 opacity-100" : "-rotate-180 opacity-0"
-            }`}
-            onClick={() => setToggle(!toggle)}
-          />
-          <img
-            src={menu.src}
-            alt="menu"
-            className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
-              toggle ? "rotate-180 opacity-0" : "-rotate-0 opacity-100"
-            }`}
-            onClick={() => setToggle(!toggle)}
-          />
+          <picture>
+            <img
+              src={close.src}
+              alt="menu"
+              className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
+                toggle ? "rotate-0 opacity-100" : "-rotate-180 opacity-0"
+              }`}
+              onClick={() => setToggle(!toggle)}
+            />
+          </picture>
+          <picture>
+            <img
+              src={menu.src}
+              alt="menu"
+              className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
+                toggle ? "rotate-180 opacity-0" : "-rotate-0 opacity-100"
+              }`}
+              onClick={() => setToggle(!toggle)}
+            />
+          </picture>
           <div
             className={`${
               !toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
