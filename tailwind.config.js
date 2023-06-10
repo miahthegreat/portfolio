@@ -1,33 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      animation: {
-        marquee: "marquee 25s linear alternate infinite",
+      colors: {
+        primary: "#050816",
+        secondary: "#aaa6c3",
+        tertiary: "#151030",
+        "black-100": "#100d25",
+        "black-200": "#090325",
+        "white-100": "#f3f3f3",
+      },
+      boxShadow: {
+        card: "0px 35px 120px -15px #211e35",
       },
       fontFamily: {
-        fira: ["Fira Sans"],
-        poppins: ["Poppins"],
-        plexmono: ["Syne Mono"],
+        poppins: "['Poppins', sans-serif]",
       },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-25%)" },
-        },
+      screens: {
+        xs: "450px",
+      },
+      backgroundImage: {
+        "hero-pattern": "url('/assets/herobg.png')",
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("prettier-plugin-tailwindcss"),
-    require("@headlessui/tailwindcss"),
-  ],
-  darkMode: "class",
+
+  plugins: [],
 };
