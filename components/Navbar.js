@@ -45,30 +45,40 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center relative">
-          <picture>
+          <picture
+            className={`absolute w-[28px] h-[28px] object-contain cursor-pointer origin-center transition transform duration-200 ease-linear ${
+              toggle ? "opacity-100 scale-100" : "opacity-0 scale-0"
+            }`}
+            onClick={() => setToggle(!toggle)}
+          >
             <img
               src={close.src}
               alt="menu"
-              className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
-                toggle ? "rotate-0 opacity-100" : "-rotate-180 opacity-0"
+              className={`transition transform duration-200 ease-linear origin-center ${
+                toggle ? "rotate-180 opacity-100" : "rotate-0 opacity-0"
               }`}
-              onClick={() => setToggle(!toggle)}
             />
           </picture>
-          <picture>
+          <picture
+            className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
+              toggle
+                ? "opacity-0 scale-0 origin-center"
+                : "opacity-100 scale-100 origin-center"
+            }`}
+            onClick={() => setToggle(!toggle)}
+          >
             <img
               src={menu.src}
               alt="menu"
-              className={`absolute w-[28px] h-[28px] object-contain cursor-pointer transition transform duration-200 ease-linear ${
-                toggle ? "rotate-180 opacity-0" : "-rotate-0 opacity-100"
+              className={`transition transform origin-center duration-200 ease-linear  ${
+                toggle ? "rotate-0 opacity-0 origin" : "rotate-180 opacity-100"
               }`}
-              onClick={() => setToggle(!toggle)}
             />
           </picture>
           <div
-            className={`${
+            className={`transition transform origin-center duration-200 ease-linear  ${
               !toggle ? "opacity-0 scale-0" : "opacity-100 scale-100"
-            } p-6 black-gradient -right-8 top-10 absolute mx-4 my-2 max-h-max min-w-[140px] z-10 rounded-xl transition transform duration-200 ease-linear`}
+            } p-6 black-gradient -right-8 top-2 absolute mx-4 my-2 max-h-max min-w-[140px] z-10 rounded-xl transition transform duration-200 ease-linear`}
           >
             <ul className="list-none flex sm:hidden justify-end flex-col gap-4 items-start">
               {navLinks.map((link, idx) => (
