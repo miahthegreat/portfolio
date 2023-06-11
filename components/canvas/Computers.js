@@ -63,7 +63,7 @@ const ComputersCanvas = () => {
       }}
       gl={{ preserveDrawingBuffer: true }}
     >
-      <Suspense fallback={<CanvasLoader />}>
+      <Suspense>
         <OrbitControls
           enableZoom={false}
           autoRotate
