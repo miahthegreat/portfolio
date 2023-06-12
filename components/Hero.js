@@ -39,7 +39,7 @@ const Hero = () => {
             }}
             className="w-10 h-10 rounded-full mb-1"
           >
-            <BsChevronDoubleDown className="w-10 h-10 text-secondary md:text-secondary" />
+            <BsChevronDoubleDown className="w-10 h-10 text-secondary md:text-tertiary" />
           </motion.div>
         </a>
       </div>
