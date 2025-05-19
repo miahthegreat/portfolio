@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
+import { PageTitleProvider, StateProvider } from "@/context";
+import { ThemeProvider } from "next-themes";
+import { ViewportHeightSetter } from "@/context/ViewportProvider";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { HeaderWithTitle } from "@/components/header-with-title";
+import { Toaster } from "@/components/toaster";
+// import { Toaster } from "sonner"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ibmSans = IBM_Plex_Sans({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-ibm-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
   subsets: ["latin"],
 });
 
@@ -23,11 +33,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ibmSans.variable} ${spaceMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ViewportHeightSetter />
+          <StateProvider>
+            <PageTitleProvider>
+              <SidebarProvider className="font-sans">
+                <AppSidebar />
+                  <SidebarInset>
+                    <HeaderWithTitle />
+                    {children}
+                  </SidebarInset>
+              </SidebarProvider>
+            </PageTitleProvider>
+            <Toaster />
+          </StateProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
