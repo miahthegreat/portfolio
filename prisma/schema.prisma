@@ -1,0 +1,142 @@
+// Portfolio – Resident Experience Platform
+// Run: pnpm db:up && pnpm db:migrate && pnpm db:seed
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Properties & Onboarding
+// ---------------------------------------------------------------------------
+
+model Property {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  address   String?
+  createdAt DateTime @default(now())
+
+  residents Resident[]
+}
+
+model Resident {
+  id         String   @id @default(cuid())
+  propertyId String
+  name       String
+  email      String
+  createdAt  DateTime @default(now())
+
+  property Property          @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  tasks    OnboardingTask[]
+  orders   Order[]
+
+  @@unique([propertyId, email])
+  @@index([propertyId])
+}
+
+model TaskCategory {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  sortOrder Int      @default(0)
+
+  tasks OnboardingTask[]
+
+  @@index([sortOrder])
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+enum TaskOwner {
+  RESIDENT
+  PM
+  SYSTEM
+}
+
+model OnboardingTask {
+  id          String       @id @default(cuid())
+  residentId  String
+  categoryId  String
+  title       String
+  status      TaskStatus   @default(TODO)
+  owner       TaskOwner    @default(RESIDENT)
+  dueDate     DateTime?
+  completedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  resident  Resident      @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  category  TaskCategory  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@index([residentId])
+  @@index([residentId, status])
+  @@index([categoryId])
+}
+
+// ---------------------------------------------------------------------------
+// Marketplace demo (for Step 6)
+// ---------------------------------------------------------------------------
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String
+  priceCents  Int
+  enabled     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems OrderItem[]
+
+  @@index([category])
+  @@index([enabled])
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  residentId String
+  createdAt  DateTime @default(now())
+
+  resident Resident    @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  items    OrderItem[]
+
+  @@index([residentId])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  serviceId String
+  quantity  Int      @default(1)
+  priceCents Int
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+
+  @@index([orderId])
+  @@index([serviceId])
+}
+
+// ---------------------------------------------------------------------------
+// Analytics demo (for Step 7)
+// ---------------------------------------------------------------------------
+
+model DailyMetric {
+  id          String   @id @default(cuid())
+  date        DateTime @unique
+  adoptionRate Float
+  revenue     Float
+  attachRate  Float
+  churnRate   Float
+
+  @@index([date])
+}
