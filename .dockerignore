@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build
+.next
+out
+dist
+
+# Git and IDE
+.git
+.gitignore
+.cursor
+.vscode
+*.md
+
+# Tests and tooling
+coverage
+.nyc_output
+playwright-report
+test-results
+e2e
+*.spec.ts
+*.spec.tsx
+*.test.ts
+*.test.tsx
+vitest.config.ts
+vitest.setup.ts
+playwright.config.ts
+
+# Env (use compose env instead)
+.env
+.env.*
+
+# Misc
+Dockerfile
+docker-compose*.yml
+.dockerignore
