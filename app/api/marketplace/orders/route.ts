@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       where: { propertyId },
       select: { id: true },
     })
-    .then((r) => r.map((x) => x.id));
+    .then((r: { id: string }[]) => r.map((x: { id: string }) => x.id));
 
   if (residentIds.length === 0) {
     return apiSuccess([]);
@@ -34,9 +34,10 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  const withTotals = orders.map((order) => {
+  const withTotals = orders.map((order: (typeof orders)[number]) => {
     const totalCents = order.items.reduce(
-      (sum, i) => sum + i.priceCents * i.quantity,
+      (sum: number, i: { priceCents: number; quantity: number }) =>
+        sum + i.priceCents * i.quantity,
       0
     );
     return { ...order, totalCents };

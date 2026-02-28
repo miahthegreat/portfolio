@@ -23,7 +23,8 @@ export async function GET(
   if (!order) return apiError("NOT_FOUND", "Order not found", 404);
 
   const totalCents = order.items.reduce(
-    (sum, i) => sum + i.priceCents * i.quantity,
+    (sum: number, i: { priceCents: number; quantity: number }) =>
+      sum + i.priceCents * i.quantity,
     0
   );
 

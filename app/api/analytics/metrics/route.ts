@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     orderBy: { date: "asc" },
   });
 
-  const data = metrics.map((m) => ({
+  const data = metrics.map((m: (typeof metrics)[number]) => ({
     id: m.id,
     date: m.date.toISOString().slice(0, 10),
     adoptionRate: m.adoptionRate,
