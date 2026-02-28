@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppShell } from "@/components/app-shell";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -25,12 +26,29 @@ const rhMono = Red_Hat_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Jeremiah Schmid | Portfolio",
+    default: siteConfig.title,
     template: "%s | Portfolio",
   },
-  description:
-    "Full-stack portfolio: Resident Experience Platform — onboarding, marketplace, and analytics.",
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

@@ -140,3 +140,17 @@ model DailyMetric {
 
   @@index([date])
 }
+
+// ---------------------------------------------------------------------------
+// Contact form submissions (portfolio)
+// ---------------------------------------------------------------------------
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}

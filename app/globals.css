@@ -313,3 +313,22 @@
     transition-timing-function: var(--ease-out-expo);
   }
 }
+
+/* Resume print: hide shell UI, white background */
+@media print {
+  body {
+    background: white;
+  }
+  [data-testid="portfolio-header"],
+  [data-testid="bottom-nav"] {
+    display: none !important;
+  }
+  .resume-page {
+    background: white !important;
+  }
+  .resume-page a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #666;
+  }
+}

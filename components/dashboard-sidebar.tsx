@@ -10,6 +10,7 @@ import {
   BarChart3,
   BookOpen,
   Building2,
+  Mail,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useProperty } from "@/contexts/property-context";
@@ -30,6 +31,7 @@ const navLinks = [
   { href: "/dashboard/marketplace", label: "Marketplace", icon: ShoppingBag },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/docs", label: "Docs", icon: BookOpen },
+  { href: "/dashboard/contact-messages", label: "Messages", icon: Mail },
 ] as const;
 
 export function DashboardSidebar({ className }: { className?: string }) {

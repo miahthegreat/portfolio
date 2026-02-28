@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, User, Mail, FileText, LayoutDashboard } from "lucide-react";
+import { Home, User, FolderKanban, Mail, FileText, LayoutDashboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: User },
+  { href: "/projects", label: "Projects", icon: FolderKanban },
   { href: "/contact", label: "Contact", icon: Mail },
   { href: "/resume", label: "Resume", icon: FileText },
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },

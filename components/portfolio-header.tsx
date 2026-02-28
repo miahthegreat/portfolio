@@ -11,6 +11,7 @@ import { useNavIndicator } from "@/hooks/use-nav-indicator";
 const portfolioNavItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact" },
   { href: "/resume", label: "Resume" },
 ] as const;
