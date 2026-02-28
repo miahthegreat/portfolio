@@ -26,17 +26,9 @@ Frontend runs on port **3000**; postgres on **5432**.
    docker compose up -d --build
    ```
 2. **Production env**  
-   Add auth and site URL for the frontend. Either:
-   - **Option A:** Create a `.env` (or `.env.production`) and reference it in `docker-compose.yml`:
-     ```yaml
-     frontend:
-       env_file: .env
-     ```
-   - **Option B:** Set in `docker-compose.yml` under `frontend.environment` (avoid secrets in the file; use secrets or env_file in production).
-
-   Required for production:
-   - `NEXTAUTH_SECRET`
-   - `NEXTAUTH_URL` = your public URL (e.g. `https://portfolio.example.com`)
+   The frontend service loads `.env` via `env_file`. If `.env` is missing, copy it from `.env.example`, then set at least:
+   - `NEXTAUTH_SECRET` (e.g. `openssl rand -base64 32`)
+   - `NEXTAUTH_URL` = your public URL (e.g. `http://localhost:3000` for same host, or `https://portfolio.example.com`)
    - `DASHBOARD_PASSWORD`
    - `NEXT_PUBLIC_SITE_URL` = same as `NEXTAUTH_URL` (for sitemap/OG/resume link)
 
@@ -66,3 +58,13 @@ Frontend runs on port **3000**; postgres on **5432**.
 - **DATABASE_URL** from the platform’s Postgres add-on or your own instance.
 - Build: `pnpm install && pnpm build`. Start: `pnpm start` (or the platform’s Node start command).
 - Run `prisma migrate deploy` after deploy (or in a release phase) so the DB schema is up to date.
+
+## Security (built-in)
+
+- **Rate limiting:** Contact form (`POST /api/contact`) is limited per client IP (5 requests per minute). Dashboard sign-in is limited per IP (5 attempts per 15 minutes). Uses in-memory store; for multi-instance deploys consider Redis (e.g. Upstash).
+- **Headers:** Next.js sends `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`, and a basic Content-Security-Policy. Adjust CSP in `next.config.ts` if you add external scripts or domains.
+
+## Monitoring and reliability
+
+- **Health check:** `GET /api/health` returns `200` with `{ ok: true, db?: "ok" | "error", timestamp }`. Use it for Docker healthchecks, load balancers, and Cloudflare/orchestration. The frontend service in `docker-compose.yml` includes a healthcheck that calls this endpoint.
+- **Error tracking (optional):** For production error reporting, you can add a provider such as [Sentry](https://sentry.io) (or similar). Install the SDK, set `SENTRY_DSN` (or the provider’s env var) in production, and initialize it in your Next.js app (e.g. `sentry.client.config.ts` / `sentry.server.config.ts`). No Sentry code is included by default; add and configure it when you need it.

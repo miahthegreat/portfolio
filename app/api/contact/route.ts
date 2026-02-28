@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { apiError, apiSuccess, parseBody } from "@/lib/api-response";
+import { getClientIdentifier, isRateLimited } from "@/lib/rate-limit";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(200),
@@ -20,7 +21,14 @@ export async function GET() {
   }
 }
 
+const CONTACT_RATE_LIMIT = 5;
+const CONTACT_WINDOW_MS = 60 * 1000; // 1 minute
+
 export async function POST(request: Request) {
+  const clientId = getClientIdentifier(request);
+  if (isRateLimited(`contact:${clientId}`, CONTACT_RATE_LIMIT, CONTACT_WINDOW_MS)) {
+    return apiError("RATE_LIMITED", "Too many contact requests. Try again later.", 429);
+  }
   const [err, body] = await parseBody(request, contactSchema);
   if (err) return err;
   const data = body!;

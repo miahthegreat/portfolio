@@ -23,7 +23,13 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        const { getClientIdentifier, isRateLimited } = await import("@/lib/rate-limit");
+        const headers = (req?.headers ?? {}) as Record<string, string | string[] | undefined>;
+        const clientId = getClientIdentifier({ headers });
+        if (isRateLimited(`auth:${clientId}`, 5, 15 * 60 * 1000)) {
+          return null; // Sign in failed (rate limited)
+        }
         const expected = process.env.DASHBOARD_PASSWORD;
         if (!expected) {
           console.warn("DASHBOARD_PASSWORD not set; dashboard auth will reject all logins.");

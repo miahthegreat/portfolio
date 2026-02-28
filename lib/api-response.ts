@@ -5,6 +5,7 @@ export type ApiErrorCode =
   | "NOT_FOUND"
   | "CONFLICT"
   | "BAD_REQUEST"
+  | "RATE_LIMITED"
   | "INTERNAL_ERROR";
 
 export interface ApiErrorBody {
