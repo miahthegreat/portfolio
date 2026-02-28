@@ -19,7 +19,10 @@ import { usePathname } from "next/navigation";
 export function DashboardChrome({ children }: { children: React.ReactNode }) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const pathname = usePathname();
-  useEffect(() => setSheetOpen(false), [pathname]);
+  useEffect(() => {
+    const t = setTimeout(() => setSheetOpen(false), 0);
+    return () => clearTimeout(t);
+  }, [pathname]);
 
   return (
     <>
