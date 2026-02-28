@@ -1,40 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jeremiah Schmid — Portfolio
 
-## Getting Started
+Personal portfolio and resume site built with **Next.js 16**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **PostgreSQL**. Public site (hero, about, resume, projects, contact) plus a password-protected **dashboard** (onboarding demos, marketplace, analytics, docs, contact messages).
 
-First, run the development server:
+## Tech stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js** (App Router), **React 19**, **TypeScript**
+- **Tailwind CSS 4**, **Motion**, **shadcn/ui**-style components
+- **Prisma** + **PostgreSQL**
+- **NextAuth** (credentials) for dashboard login
+- **pnpm** for package management
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone and install**
+   ```bash
+   pnpm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Environment**  
+   Copy `.env.example` to `.env` and set at least `DATABASE_URL`. For local dashboard login, set `NEXTAUTH_SECRET`, `NEXTAUTH_URL` (e.g. `http://localhost:3002` if dev runs on 3002), and `DASHBOARD_PASSWORD`.
 
-## Learn More
+3. **Database**
+   ```bash
+   pnpm db:up        # start Postgres via Docker
+   pnpm db:migrate   # run migrations
+   pnpm db:seed      # optional seed
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run dev**
+   ```bash
+   pnpm dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) (or 3002 if you use a different port). Dashboard: [/dashboard](http://localhost:3000/dashboard) (sign in with `DASHBOARD_PASSWORD`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Command | Description |
+|--------|-------------|
+| `pnpm dev` | Start Next.js dev server |
+| `pnpm build` | Prisma generate + Next.js build |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run ESLint |
+| `pnpm typecheck` | Run TypeScript check |
+| `pnpm test` | Run Vitest unit tests |
+| `pnpm test:e2e` | Run Playwright E2E tests |
+| `pnpm test:e2e:a11y` | Run accessibility (axe) E2E tests |
+| `pnpm db:up` | Start Postgres (Docker) |
+| `pnpm db:migrate` | Run Prisma migrations (dev) |
+| `pnpm db:studio` | Open Prisma Studio |
 
 ## Deployment
 
-See **[docs/DEPLOY.md](docs/DEPLOY.md)** for production environment variables (NextAuth, database, dashboard password) and notes for Docker and Vercel.
+See **[docs/DEPLOY.md](docs/DEPLOY.md)** for production env vars (NextAuth, database, dashboard password), Docker, Vercel, and other platforms. The app exposes **GET /api/health** for health checks and includes rate limiting and security headers (see docs).
 
-## Deploy on Vercel
+## Docs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [docs/DEPLOY.md](docs/DEPLOY.md) — Deployment, env vars, security, monitoring
+- [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) — Accessibility notes and testing
+- [docs/testing.md](docs/testing.md) — Unit, E2E, and Lighthouse testing

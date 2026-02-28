@@ -28,7 +28,7 @@ export const projects: Project[] = [
     liveUrl: "/dashboard",
     repoUrl: "https://github.com/miahthegreat/portfolio",
     status: "Live",
-    image: "/projects/placeholder.svg",
+    image: "/projects/dashboard.png",
   },
   {
     slug: "data-pipeline-dashboard",
