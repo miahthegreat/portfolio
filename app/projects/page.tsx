@@ -29,7 +29,11 @@ export default function ProjectsPage() {
             <li key={project.slug}>
               <Card className="flex h-full flex-col overflow-hidden border-border/80 transition-smooth hover:border-primary/30 hover:shadow-md">
                 {project.image && (
-                  <Link href={`/projects/${project.slug}`} className="block aspect-[400/240] w-full shrink-0 overflow-hidden bg-muted/50">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="block aspect-[400/240] w-full shrink-0 overflow-hidden bg-muted/50"
+                    aria-label={`View ${project.title} project`}
+                  >
                     <Image
                       src={project.image}
                       alt=""
