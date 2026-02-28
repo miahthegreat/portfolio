@@ -105,7 +105,7 @@ export function OnboardingDemo() {
       if (!res.ok) throw new Error("Failed to load categories");
       const json = await res.json();
       setCategories(json.data);
-    } catch (e) {
+    } catch {
       toast.error("Failed to load categories");
     }
   }, []);
@@ -216,7 +216,7 @@ export function OnboardingDemo() {
       const res = await fetch(`${API}/tasks/${task.id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Delete failed");
       toast.success("Task deleted");
-    } catch (e) {
+    } catch {
       setTasks(prev);
       toast.error("Delete failed");
     } finally {
@@ -231,7 +231,7 @@ export function OnboardingDemo() {
       if (!res.ok) throw new Error("Reset failed");
       await fetchTasks();
       toast.success("Demo data reset");
-    } catch (e) {
+    } catch {
       toast.error("Reset failed");
     } finally {
       setResetting(false);

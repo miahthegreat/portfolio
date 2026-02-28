@@ -76,7 +76,7 @@ async function main() {
       email: "jordan.chen@example.com",
     },
   });
-  const sam = await prisma.resident.create({
+  const _sam = await prisma.resident.create({
     data: {
       propertyId: sunrise.id,
       name: "Sam Taylor",
@@ -132,7 +132,7 @@ async function main() {
   await prisma.order.deleteMany({});
   await prisma.service.deleteMany({});
 
-  const [internet, storage, gym, cleaning, parking] = await Promise.all([
+  const services = await Promise.all([
     prisma.service.create({
       data: {
         name: "Premium Internet",
@@ -183,6 +183,7 @@ async function main() {
   const order1 = await prisma.order.create({
     data: { residentId: alex.id },
   });
+  const [internet, , gym, cleaning] = services;
   await prisma.orderItem.createMany({
     data: [
       { orderId: order1.id, serviceId: internet.id, quantity: 1, priceCents: internet.priceCents },

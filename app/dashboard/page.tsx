@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Layers, ShoppingBag, BarChart3, ArrowRight, Building2 } from "lucide-react";
+import { Layers, ShoppingBag, BarChart3, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { DashboardOverviewClient } from "./dashboard-overview-client";
 

@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
-import { apiError, apiSuccess, parseBody } from "@/lib/api-response";
+import { apiSuccess, parseBody } from "@/lib/api-response";
 
 const createServiceSchema = z.object({
   name: z.string().min(1).max(200),

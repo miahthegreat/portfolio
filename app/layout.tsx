@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Mono, JetBrains_Mono, Red_Hat_Mono } from "next/font/google";
+import { Red_Hat_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,18 +8,6 @@ import { AppShell } from "@/components/app-shell";
 import { SkipToContent } from "@/components/skip-to-content";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
-
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const jbMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 const rhMono = Red_Hat_Mono({
   variable: "--font-redhat-mono",

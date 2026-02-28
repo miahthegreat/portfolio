@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       },
     });
     return apiSuccess({ id: message.id }, 201);
-  } catch (e) {
+  } catch {
     return apiError("INTERNAL_ERROR", "Failed to save message", 500);
   }
 }

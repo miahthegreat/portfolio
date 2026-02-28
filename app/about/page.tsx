@@ -1,5 +1,3 @@
-import { siteConfig } from "@/lib/site-config";
-
 export const metadata = {
   title: "About",
   description:
