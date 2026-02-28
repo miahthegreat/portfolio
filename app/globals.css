@@ -150,6 +150,12 @@
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-smooth);
   }
+  /* Clear focus ring for keyboard users (focus-visible only) */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 }
 
 /* Keyframes */

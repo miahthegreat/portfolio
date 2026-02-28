@@ -3,7 +3,9 @@ import { Space_Mono, JetBrains_Mono, Red_Hat_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SessionProvider } from "@/components/session-provider";
 import { AppShell } from "@/components/app-shell";
+import { SkipToContent } from "@/components/skip-to-content";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -61,9 +63,11 @@ export default function RootLayout({
       <body
         className={`${rhMono.variable} min-h-screen overflow-x-hidden font-mono antialiased`}
       >
+        <SkipToContent />
         <ThemeProvider>
-          <TooltipProvider delayDuration={200}>
-            <AppShell>{children}</AppShell>
+          <SessionProvider>
+            <TooltipProvider delayDuration={200}>
+              <AppShell>{children}</AppShell>
             <Toaster
               position="bottom-right"
               richColors
@@ -72,7 +76,8 @@ export default function RootLayout({
                 className: "font-sans",
               }}
             />
-          </TooltipProvider>
+            </TooltipProvider>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

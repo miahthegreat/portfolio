@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import {
   LayoutDashboard,
   Layers,
@@ -11,6 +12,7 @@ import {
   BookOpen,
   Building2,
   Mail,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useProperty } from "@/contexts/property-context";
@@ -72,7 +74,11 @@ export function DashboardSidebar({ className }: { className?: string }) {
             value={selectedPropertyId ?? ""}
             onValueChange={(v) => setSelectedPropertyId(v || null)}
           >
-            <SelectTrigger data-testid="dashboard-property-select" className="h-9 w-full">
+            <SelectTrigger
+              data-testid="dashboard-property-select"
+              className="h-9 w-full"
+              aria-label="Select property"
+            >
               <Building2 className="size-4 shrink-0 text-muted-foreground" />
               <SelectValue placeholder="Select property" />
             </SelectTrigger>
@@ -142,7 +148,15 @@ export function DashboardSidebar({ className }: { className?: string }) {
             );
           })}
         </div>
-        <div className="mt-auto border-t border-border/50 p-4">
+        <div className="mt-auto border-t border-border/50 space-y-1 p-4">
+          <button
+            type="button"
+            onClick={() => signOut({ callbackUrl: "/dashboard/login" })}
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5"
+          >
+            <LogOut className="size-4 shrink-0" />
+            Sign out
+          </button>
           <Link
             data-testid="sidebar-portfolio-link"
             href="/"

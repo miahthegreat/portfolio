@@ -1,5 +1,5 @@
 import { PropertyProvider } from "@/contexts/property-context";
-import { DashboardChrome } from "@/components/dashboard-chrome";
+import { DashboardLayoutClient } from "@/components/dashboard-layout-client";
 
 export default function DashboardLayout({
   children,
@@ -8,9 +8,7 @@ export default function DashboardLayout({
 }) {
   return (
     <PropertyProvider>
-      <div className="flex min-h-screen flex-col">
-        <DashboardChrome>{children}</DashboardChrome>
-      </div>
+      <DashboardLayoutClient>{children}</DashboardLayoutClient>
     </PropertyProvider>
   );
 }

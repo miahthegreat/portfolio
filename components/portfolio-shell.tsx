@@ -14,6 +14,7 @@ export function PortfolioShell({ children }: { children: React.ReactNode }) {
       <PortfolioHeader />
       <ScrollArea className="min-h-0 min-w-0 flex-1" data-testid="main-scroll">
         <main
+          id="main-content"
           data-testid="main-content"
           className={
             pathname === "/"

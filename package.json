@@ -13,6 +13,9 @@
     "test:run": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:e2e:a11y": "playwright test e2e/a11y.spec.ts",
+    "lighthouse": "node scripts/run-lighthouse.cjs",
+    "lighthouse:full": "node scripts/run-lighthouse.cjs --full",
     "db:up": "docker compose up -d",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
@@ -26,6 +29,7 @@
     "lucide-react": "^0.575.0",
     "motion": "^12.34.3",
     "next": "16.1.6",
+    "next-auth": "^4.24.13",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "19.2.3",
@@ -36,6 +40,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
@@ -48,6 +53,7 @@
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^9.1.0",
     "jsdom": "^25.0.0",
+    "lighthouse": "^13.0.3",
     "playwright": "^1.58.2",
     "prettier": "^3.4.2",
     "prisma": "^6.0.0",
