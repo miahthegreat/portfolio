@@ -1,5 +1,7 @@
 # Testing
 
+CI runs on push/PR to `master` or `main`: see [.github/workflows/ci.yml](../.github/workflows/ci.yml). It runs typecheck, lint, unit tests, then build + Playwright e2e (Chromium only) against a started app with Postgres.
+
 ## Vitest (unit / component tests)
 
 - **`pnpm test`** – Run Vitest in **watch mode** (re-runs on file changes).
