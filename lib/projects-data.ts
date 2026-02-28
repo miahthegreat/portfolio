@@ -4,6 +4,11 @@
  */
 export type ProjectStatus = "Live" | "In development" | "Coming soon";
 
+export interface ProjectCaseStudy {
+  heading?: string;
+  paragraphs: string[];
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -15,6 +20,8 @@ export interface Project {
   status: ProjectStatus;
   /** Optional: image path under /public or external URL */
   image?: string;
+  /** Optional: case study content when project has shipped */
+  caseStudy?: ProjectCaseStudy;
 }
 
 export const projects: Project[] = [
@@ -29,6 +36,14 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/miahthegreat/portfolio",
     status: "Live",
     image: "/projects/dashboard.png",
+    caseStudy: {
+      heading: "Case study",
+      paragraphs: [
+        "The dashboard is deployed as part of this portfolio. It runs behind NextAuth (credentials) with rate limiting on sign-in and on the contact API. Security headers (CSP, X-Frame-Options, X-Content-Type-Options, etc.) and a health endpoint (GET /api/health) support production monitoring and orchestration.",
+        "Stack: Next.js App Router, React 19, TypeScript, Prisma, PostgreSQL, Tailwind. Features are property-scoped: onboarding (residents and tasks per property), marketplace (services and orders), and analytics with Recharts and time-range filters. The dashboard also includes an in-app docs section and a contact-messages view for form submissions.",
+        "Deployment: Docker (frontend + Postgres) with healthchecks; optional Cloudflare Tunnel for external access. Migrations, env vars, security notes, and monitoring are documented in docs/DEPLOY.md.",
+      ],
+    },
   },
   {
     slug: "data-pipeline-dashboard",

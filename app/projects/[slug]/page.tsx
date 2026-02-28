@@ -90,9 +90,24 @@ export default async function ProjectDetailPage({
           )}
         </div>
 
-        <p className="mt-12 text-sm text-muted-foreground">
-          Detailed case study (architecture, tradeoffs, metrics) — coming as each project ships.
-        </p>
+        {project.caseStudy ? (
+          <section className="mt-12 border-t border-border pt-10" aria-labelledby={project.caseStudy.heading ? "case-study-heading" : undefined}>
+            {project.caseStudy.heading && (
+              <h2 id="case-study-heading" className="text-lg font-semibold text-foreground">
+                {project.caseStudy.heading}
+              </h2>
+            )}
+            <div className="mt-4 space-y-4 text-sm text-muted-foreground">
+              {project.caseStudy.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </section>
+        ) : (
+          <p className="mt-12 text-sm text-muted-foreground">
+            Detailed case study (architecture, tradeoffs, metrics) — coming as each project ships.
+          </p>
+        )}
       </div>
     </div>
   );
