@@ -23,9 +23,9 @@ export async function POST() {
   const categories = await prisma.taskCategory.findMany({ orderBy: { sortOrder: "asc" } });
   if (categories.length < 4) return apiSuccess({ reset: true });
 
-  const alex = residents.find((r) => r.email === "alex.rivera@example.com");
-  const jordan = residents.find((r) => r.email === "jordan.chen@example.com");
-  const maria = residents.find((r) => r.email === "maria.santos@example.com");
+  const alex = residents.find((r: { email: string; id: string }) => r.email === "alex.rivera@example.com");
+  const jordan = residents.find((r: { email: string; id: string }) => r.email === "jordan.chen@example.com");
+  const maria = residents.find((r: { email: string; id: string }) => r.email === "maria.santos@example.com");
 
   const now = new Date();
   const nextWeek = new Date(now);
