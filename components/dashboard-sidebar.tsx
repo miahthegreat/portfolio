@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   LayoutDashboard,
   Layers,
@@ -13,6 +13,8 @@ import {
   Building2,
   Mail,
   LogOut,
+  LogIn,
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useProperty } from "@/contexts/property-context";
@@ -27,17 +29,24 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Home } from "lucide-react";
 
-const navLinks = [
+const allNavLinks = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/onboarding", label: "Onboarding", icon: Layers },
   { href: "/dashboard/marketplace", label: "Marketplace", icon: ShoppingBag },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/docs", label: "Docs", icon: BookOpen },
-  { href: "/dashboard/contact-messages", label: "Messages", icon: Mail },
+  { href: "/dashboard/visitors", label: "Guest visitors by IP", icon: Users, adminOnly: true },
+  { href: "/dashboard/contact-messages", label: "Messages", icon: Mail, adminOnly: true },
 ] as const;
 
 export function DashboardSidebar({ className }: { className?: string }) {
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === "admin";
+  const navLinks = useMemo(
+    () => allNavLinks.filter((link) => !("adminOnly" in link && link.adminOnly) || isAdmin),
+    [isAdmin]
+  );
   const {
     properties,
     selectedPropertyId,
@@ -149,14 +158,24 @@ export function DashboardSidebar({ className }: { className?: string }) {
           })}
         </div>
         <div className="mt-auto border-t border-border/50 space-y-1 p-4">
-          <button
-            type="button"
-            onClick={() => signOut({ callbackUrl: "/dashboard/login" })}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5"
-          >
-            <LogOut className="size-4 shrink-0" />
-            Sign out
-          </button>
+          {session ? (
+            <button
+              type="button"
+              onClick={() => signOut({ callbackUrl: "/dashboard" })}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5"
+            >
+              <LogOut className="size-4 shrink-0" />
+              Sign out
+            </button>
+          ) : (
+            <Link
+              href="/dashboard/login"
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5"
+            >
+              <LogIn className="size-4 shrink-0" />
+              Sign in
+            </Link>
+          )}
           <Link
             data-testid="sidebar-portfolio-link"
             href="/"

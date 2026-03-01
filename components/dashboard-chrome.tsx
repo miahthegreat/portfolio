@@ -3,6 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, Home } from "lucide-react";
+
+/** Records a dashboard visit by IP (for admin "Guest visitors by IP" view). */
+function RecordVisit() {
+  useEffect(() => {
+    fetch("/api/visitors/record", { method: "POST" }).catch(() => {});
+  }, []);
+  return null;
+}
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -26,6 +34,7 @@ export function DashboardChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <RecordVisit />
       {/* Mobile top bar: menu + Portfolio + theme */}
       <header data-testid="dashboard-mobile-header" className="sticky top-0 z-40 flex h-14 items-center justify-between gap-4 border-b border-border/50 bg-background/95 px-4 backdrop-blur-xl lg:hidden">
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>

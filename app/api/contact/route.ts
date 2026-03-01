@@ -1,5 +1,7 @@
 import { z } from "zod";
+import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/db";
+import { authOptions } from "@/lib/auth";
 import { apiError, apiSuccess, parseBody } from "@/lib/api-response";
 import { getClientIdentifier, isRateLimited } from "@/lib/rate-limit";
 
@@ -9,9 +11,19 @@ const contactSchema = z.object({
   message: z.string().min(1, "Message is required").max(10_000),
 });
 
-export async function GET() {
+export async function GET(request: Request) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return apiError("BAD_REQUEST", "Sign in required", 401);
+  }
+  if (session.user.role !== "admin") {
+    return apiError("BAD_REQUEST", "Admin access required to view messages", 403);
+  }
+  const { searchParams } = new URL(request.url);
+  const includeArchived = searchParams.get("archived") === "true";
   try {
     const messages = await prisma.contactMessage.findMany({
+      where: includeArchived ? undefined : { archivedAt: null },
       orderBy: { createdAt: "desc" },
       take: 100,
     });

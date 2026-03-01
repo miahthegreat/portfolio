@@ -27,12 +27,22 @@ function DashboardLoginForm() {
     setLoading(false);
   }
 
+  async function handleGuestSignIn() {
+    setLoading(true);
+    await signIn("credentials", {
+      guest: "true",
+      redirect: true,
+      callbackUrl,
+    });
+    setLoading(false);
+  }
+
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Dashboard sign in</CardTitle>
         <CardDescription>
-          Enter the dashboard password to continue.
+          Sign in with the admin password for Messages and Guest visitors by IP, or continue as guest to view the demo.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -43,7 +53,7 @@ function DashboardLoginForm() {
             </p>
           )}
           <div>
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Admin password</Label>
             <Input
               id="password"
               name="password"
@@ -51,14 +61,24 @@ function DashboardLoginForm() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
               disabled={loading}
               className="mt-1.5"
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Signing in…" : "Sign in"}
-          </Button>
+          <div className="flex flex-col gap-2">
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing in…" : "Sign in"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              disabled={loading}
+              onClick={handleGuestSignIn}
+            >
+              Continue as guest
+            </Button>
+          </div>
         </form>
         <p className="mt-4 text-center text-sm text-muted-foreground">
           <Link href="/" className="text-primary hover:underline">
