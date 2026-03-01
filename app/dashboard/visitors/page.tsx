@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,29 +25,28 @@ interface VisitorRow {
 export default function GuestVisitorsPage() {
   const { data: session, status } = useSession();
   const [visitors, setVisitors] = useState<VisitorRow[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const load = useCallback(() => {
+  useEffect(() => {
+    if (status === "loading") return;
     if (session?.user?.role !== "admin") return;
-    setLoading(true);
-    fetch("/api/visitors")
+    const controller = new AbortController();
+    const id = setTimeout(() => setLoading(true), 0);
+    fetch("/api/visitors", { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to load");
         return res.json();
       })
       .then((json) => setVisitors(json?.data ?? []))
-      .catch(() => setVisitors([]))
+      .catch((err) => {
+        if (err?.name !== "AbortError") setVisitors([]);
+      })
       .finally(() => setLoading(false));
-  }, [session?.user?.role]);
-
-  useEffect(() => {
-    if (status === "loading") return;
-    if (session?.user?.role !== "admin") {
-      setLoading(false);
-      return;
-    }
-    load();
-  }, [status, session?.user?.role, load]);
+    return () => {
+      clearTimeout(id);
+      controller.abort();
+    };
+  }, [status, session?.user?.role]);
 
   if (status === "loading" || (session?.user && session.user.role !== "admin")) {
     return (
