@@ -338,3 +338,9 @@
     color: #666;
   }
 }
+
+/* Lock document so only main ScrollAreas scroll */
+html {
+  height: 100%;
+  overflow: hidden;
+}

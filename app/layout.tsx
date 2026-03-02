@@ -49,14 +49,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${rhMono.variable} min-h-screen overflow-x-hidden font-mono antialiased`}
+        className={`${rhMono.variable} flex h-screen flex-col overflow-hidden font-mono antialiased`}
       >
         <SkipToContent />
         <ThemeProvider>
           <SessionProvider>
             <TooltipProvider delayDuration={200}>
-              <AppShell>{children}</AppShell>
-            <Toaster
+              <div className="flex min-h-0 flex-1 flex-col">
+                <AppShell>{children}</AppShell>
+              </div>
+              <Toaster
               position="bottom-right"
               richColors
               closeButton

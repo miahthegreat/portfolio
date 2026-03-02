@@ -191,7 +191,7 @@ export function MarketplaceDemo() {
 
   if (!selectedPropertyId) {
     return (
-      <div data-testid="marketplace-page" className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div data-testid="marketplace-page" className="mx-auto min-w-0 max-w-full max-w-6xl px-4 py-8 sm:px-6">
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12 text-center">
             <p className="text-muted-foreground">No property selected.</p>
@@ -253,60 +253,104 @@ export function MarketplaceDemo() {
               </Card>
             ) : (
               <Card>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Category</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="w-[100px]">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {services.map((s) => (
-                      <TableRow key={s.id}>
-                        <TableCell>
-                          <div>
-                            <p className="font-medium">{s.name}</p>
-                            {s.description && (
-                              <p className="text-xs text-muted-foreground">{s.description}</p>
-                            )}
-                          </div>
-                        </TableCell>
-                        <TableCell>
+                {/* Mobile: stacked cards */}
+                <div className="w-full space-y-3 p-4 md:hidden">
+                  {services.map((s) => (
+                    <div
+                      key={s.id}
+                      className="flex flex-col gap-3 rounded-lg border bg-muted/30 p-4"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium">{s.name}</p>
+                        {s.description && (
+                          <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{s.description}</p>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-1.5">
                           <Badge variant="secondary">{s.category}</Badge>
-                        </TableCell>
-                        <TableCell>{formatPrice(s.priceCents)}</TableCell>
-                        <TableCell>
                           <Badge variant={s.enabled ? "default" : "outline"}>
                             {s.enabled ? "Active" : "Disabled"}
                           </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex gap-1">
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="size-8"
-                              onClick={() => openEditService(s)}
-                              aria-label="Edit service"
-                            >
-                              <Pencil className="size-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => toggleServiceEnabled(s)}
-                            >
-                              {s.enabled ? "Disable" : "Enable"}
-                            </Button>
-                          </div>
-                        </TableCell>
+                          <span className="text-sm font-medium">{formatPrice(s.priceCents)}</span>
+                        </div>
+                      </div>
+                      <div className="flex shrink-0 gap-1">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => openEditService(s)}
+                          aria-label="Edit service"
+                        >
+                          <Pencil className="size-4 sm:mr-1" />
+                          <span className="hidden sm:inline">Edit</span>
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => toggleServiceEnabled(s)}
+                        >
+                          {s.enabled ? "Disable" : "Enable"}
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* Desktop: table */}
+                <div className="hidden md:block">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Category</TableHead>
+                        <TableHead>Price</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="w-[100px]">Actions</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {services.map((s) => (
+                        <TableRow key={s.id}>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">{s.name}</p>
+                              {s.description && (
+                                <p className="text-xs text-muted-foreground">{s.description}</p>
+                              )}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="secondary">{s.category}</Badge>
+                          </TableCell>
+                          <TableCell>{formatPrice(s.priceCents)}</TableCell>
+                          <TableCell>
+                            <Badge variant={s.enabled ? "default" : "outline"}>
+                              {s.enabled ? "Active" : "Disabled"}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex gap-1">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="size-8"
+                                onClick={() => openEditService(s)}
+                                aria-label="Edit service"
+                              >
+                                <Pencil className="size-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => toggleServiceEnabled(s)}
+                              >
+                                {s.enabled ? "Disable" : "Enable"}
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </Card>
             )}
           </div>
@@ -324,43 +368,73 @@ export function MarketplaceDemo() {
               </Card>
             ) : (
               <Card>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Resident</TableHead>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Items</TableHead>
-                      <TableHead className="text-right">Total</TableHead>
-                      <TableHead className="w-[80px]"></TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {orders.map((order) => (
-                      <TableRow key={order.id}>
-                        <TableCell>
-                          <p className="font-medium">{order.resident?.name ?? "—"}</p>
-                          {order.resident?.email && (
-                            <p className="text-xs text-muted-foreground">{order.resident.email}</p>
-                          )}
-                        </TableCell>
-                        <TableCell>{formatDate(order.createdAt)}</TableCell>
-                        <TableCell>
-                          <span className="text-muted-foreground">
-                            {order.items.length} item{order.items.length !== 1 ? "s" : ""}
-                          </span>
-                        </TableCell>
-                        <TableCell className="text-right font-medium">
-                          {formatPrice(order.totalCents ?? 0)}
-                        </TableCell>
-                        <TableCell>
-                          <Button variant="ghost" size="sm" asChild>
-                            <Link href={`/dashboard/marketplace/orders/${order.id}`}>View</Link>
-                          </Button>
-                        </TableCell>
+                {/* Mobile: stacked cards */}
+                <div className="w-full space-y-3 p-4 md:hidden">
+                  {orders.map((order) => (
+                    <div
+                      key={order.id}
+                      className="flex flex-col gap-3 rounded-lg border bg-muted/30 p-4"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium">{order.resident?.name ?? "—"}</p>
+                        {order.resident?.email && (
+                          <p className="mt-0.5 truncate text-xs text-muted-foreground">{order.resident.email}</p>
+                        )}
+                        <p className="mt-2 text-sm text-muted-foreground">
+                          {formatDate(order.createdAt)}
+                          <span className="mx-1.5">·</span>
+                          {order.items.length} item{order.items.length !== 1 ? "s" : ""}
+                        </p>
+                        <p className="mt-1 font-medium">{formatPrice(order.totalCents ?? 0)}</p>
+                      </div>
+                      <div className="shrink-0">
+                        <Button variant="outline" size="sm" asChild>
+                          <Link href={`/dashboard/marketplace/orders/${order.id}`}>View order</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* Desktop: table */}
+                <div className="hidden md:block">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Resident</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Items</TableHead>
+                        <TableHead className="text-right">Total</TableHead>
+                        <TableHead className="w-[80px]"></TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {orders.map((order) => (
+                        <TableRow key={order.id}>
+                          <TableCell>
+                            <p className="font-medium">{order.resident?.name ?? "—"}</p>
+                            {order.resident?.email && (
+                              <p className="text-xs text-muted-foreground">{order.resident.email}</p>
+                            )}
+                          </TableCell>
+                          <TableCell>{formatDate(order.createdAt)}</TableCell>
+                          <TableCell>
+                            <span className="text-muted-foreground">
+                              {order.items.length} item{order.items.length !== 1 ? "s" : ""}
+                            </span>
+                          </TableCell>
+                          <TableCell className="text-right font-medium">
+                            {formatPrice(order.totalCents ?? 0)}
+                          </TableCell>
+                          <TableCell>
+                            <Button variant="ghost" size="sm" asChild>
+                              <Link href={`/dashboard/marketplace/orders/${order.id}`}>View</Link>
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </Card>
             )}
           </div>

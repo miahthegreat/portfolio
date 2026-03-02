@@ -111,7 +111,7 @@ function LoginFallback() {
 
 export default function DashboardLoginPage() {
   return (
-    <main id="main-content" className="flex min-h-screen items-center justify-center px-4">
+    <main id="main-content" className="flex min-h-full w-full items-center justify-center px-4">
       <Suspense fallback={<LoginFallback />}>
         <DashboardLoginForm />
       </Suspense>

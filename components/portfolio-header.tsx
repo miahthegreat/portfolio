@@ -30,7 +30,7 @@ export function PortfolioHeader() {
 
   return (
     <header data-testid="portfolio-header" className="sticky top-0 z-50 hidden w-full border-b border-border/50 bg-background/80 backdrop-blur-xl md:block">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-16">
+      <div className="mx-auto flex h-14 min-w-0 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-16">
         <Link
           data-testid="header-logo"
           href="/"

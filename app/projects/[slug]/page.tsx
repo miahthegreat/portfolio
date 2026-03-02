@@ -17,7 +17,7 @@ export default async function ProjectDetailPage({
 
   return (
     <div className="relative min-h-[60vh] bg-gradient-subtle bg-gradient-mesh">
-      <div className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <div className="relative mx-auto min-w-0 max-w-full max-w-3xl px-4 py-16 sm:px-6">
         <Link
           href="/projects"
           className="mb-8 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"

@@ -134,7 +134,7 @@ export function AnalyticsDemo() {
 
   if (!selectedPropertyId) {
     return (
-      <div data-testid="analytics-page" className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div data-testid="analytics-page" className="mx-auto min-w-0 max-w-full max-w-6xl px-4 py-8 sm:px-6">
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12 text-center">
             <p className="text-muted-foreground">No property selected.</p>

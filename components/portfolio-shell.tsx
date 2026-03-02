@@ -10,7 +10,7 @@ export function PortfolioShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div data-testid="portfolio-shell" className="relative flex min-h-screen min-w-0 flex-col overflow-x-clip">
+    <div data-testid="portfolio-shell" className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden">
       <PortfolioHeader />
       <ScrollArea className="min-h-0 min-w-0 flex-1" data-testid="main-scroll">
         <main
@@ -25,7 +25,7 @@ export function PortfolioShell({ children }: { children: React.ReactNode }) {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={pathname}
-              className={pathname === "/" ? "flex h-full min-h-0 flex-col" : undefined}
+              className={pathname === "/" ? "flex h-full min-h-0 min-w-0 max-w-full flex-col" : "min-w-0 max-w-full"}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}

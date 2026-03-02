@@ -18,7 +18,7 @@ export default function ResumePage() {
 
   return (
     <div className="resume-page relative min-h-[60vh] bg-gradient-subtle bg-gradient-mesh print:bg-white">
-      <div className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:max-w-5xl print:max-w-none print:py-8">
+      <div className="relative mx-auto min-w-0 max-w-full max-w-3xl px-4 py-16 sm:px-6 lg:max-w-5xl print:max-w-none print:py-8">
         <ResumePrintButton />
 
         <article className="rounded-xl border border-border bg-card p-8 shadow-sm print:border-0 print:shadow-none print:p-0">

@@ -12,8 +12,8 @@ export default function Home() {
       <HeroBlobs />
       <DotsPattern size={40} radius={1.5} className="opacity-100" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-1 flex-col justify-center px-4 py-4 sm:px-6 sm:py-8">
-        <div className="mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto flex min-w-0 max-w-full max-w-6xl flex-1 flex-col justify-center px-4 py-4 sm:px-6 sm:py-8">
+        <div className="mx-auto min-w-0 max-w-full max-w-3xl text-center">
           <h1 data-testid="hero-title" className="font-sans animate-slide-up text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
             <span className="text-foreground">Jeremiah</span>
             <br />

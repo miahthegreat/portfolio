@@ -11,7 +11,7 @@ const sections = [
 
 export default function DashboardOverviewPage() {
   return (
-    <div data-testid="dashboard-overview-page" className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+    <div data-testid="dashboard-overview-page" className="mx-auto min-w-0 max-w-full max-w-4xl px-4 py-8 sm:px-6">
       <DashboardOverviewClient />
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>

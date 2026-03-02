@@ -8,6 +8,9 @@ import {
   Code2,
   Database,
   ArrowRight,
+  Shield,
+  Users,
+  Mail,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -17,6 +20,7 @@ export const metadata: Metadata = {
 
 const sections = [
   { id: "overview", title: "Overview", icon: BookOpen },
+  { id: "access", title: "Dashboard access", icon: Shield },
   { id: "tech-stack", title: "Tech stack", icon: Cpu },
   { id: "setup", title: "Development setup", icon: Play },
   { id: "testing", title: "Testing", icon: FlaskConical },
@@ -57,10 +61,29 @@ export default function DashboardDocsPage() {
               This is a production-style <strong className="text-foreground">admin dashboard</strong> for a Resident Experience Platform: multiple <strong className="text-foreground">properties</strong>, onboarding per property, services marketplace, and analytics. The dashboard is its own route: select a property in the sidebar, then use Onboarding, Marketplace, or Analytics for that property.
             </p>
             <p>
-              <strong className="text-foreground">Dashboard</strong> (<Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>) includes the sidebar (property selector + sections) and Docs. Onboarding is scoped to the selected property: residents and tasks belong to that property. Marketplace and Analytics are placeholders.
+              <strong className="text-foreground">Dashboard</strong> (<Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>) includes the sidebar (property selector + sections) and Docs. Onboarding is scoped to the selected property: residents and tasks belong to that property. Marketplace and Analytics provide demo data.
             </p>
             <p>
-              Data is stored in PostgreSQL via <strong className="text-foreground">Prisma</strong>. The UI calls <strong className="text-foreground">REST APIs</strong> under <code className="rounded bg-muted px-1.5 py-0.5 text-sm">/api/*</code>. There is no authentication in this demo.
+              Data is stored in PostgreSQL via <strong className="text-foreground">Prisma</strong>. The UI calls <strong className="text-foreground">REST APIs</strong> under <code className="rounded bg-muted px-1.5 py-0.5 text-sm">/api/*</code>. The dashboard supports <strong className="text-foreground">guest access</strong> (no sign-in) and <strong className="text-foreground">admin sign-in</strong> for Messages and Guest visitors by IP.
+            </p>
+          </div>
+        </section>
+
+        <section id="access" data-testid="docs-section-access" className="scroll-mt-24 min-w-0">
+          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+            <Shield className="size-5 shrink-0 text-primary/80" />
+            Dashboard access
+          </h2>
+          <div className="mt-4 space-y-4 break-words text-muted-foreground">
+            <p>
+              The dashboard demo is open to everyone. At <Link href="/dashboard/login" className="font-medium text-primary hover:underline">/dashboard/login</Link> you can:
+            </p>
+            <ul className="list-inside list-disc space-y-1">
+              <li><strong className="text-foreground">Continue as guest</strong> — view Overview, Onboarding, Marketplace, Analytics, and Docs with no password</li>
+              <li><strong className="text-foreground">Sign in</strong> — enter the admin password to access Messages and Guest visitors by IP</li>
+            </ul>
+            <p>
+              <strong className="text-foreground">Admin-only routes</strong> (visible in the sidebar when signed in): <strong className="text-foreground">Messages</strong> lists contact form submissions with archive/delete actions; <strong className="text-foreground">Guest visitors by IP</strong> lists dashboard visits recorded by IP. Authentication uses NextAuth with a credentials provider (JWT, 7-day session).
             </p>
           </div>
         </section>
@@ -74,7 +97,7 @@ export default function DashboardDocsPage() {
             <ul className="list-inside list-disc space-y-1">
               <li><strong className="text-foreground">Next.js</strong> (App Router), <strong className="text-foreground">TypeScript</strong>, <strong className="text-foreground">Tailwind CSS</strong>, <strong className="text-foreground">shadcn/ui</strong></li>
               <li><strong className="text-foreground">Prisma</strong>, <strong className="text-foreground">PostgreSQL</strong> (Docker)</li>
-              <li><strong className="text-foreground">Zod</strong>, <strong className="text-foreground">Vitest</strong>, <strong className="text-foreground">Recharts</strong>, <strong className="text-foreground">Sonner</strong>, <strong className="text-foreground">next-themes</strong></li>
+              <li><strong className="text-foreground">NextAuth</strong>, <strong className="text-foreground">Zod</strong>, <strong className="text-foreground">Vitest</strong>, <strong className="text-foreground">Recharts</strong>, <strong className="text-foreground">Sonner</strong>, <strong className="text-foreground">Motion</strong>, <strong className="text-foreground">next-themes</strong></li>
             </ul>
             <p>Package manager: <strong className="text-foreground">pnpm</strong>.</p>
           </div>
@@ -90,11 +113,11 @@ export default function DashboardDocsPage() {
             <pre className="overflow-x-auto rounded-lg border border-border/60 bg-muted/50 p-4 text-sm">
 {`git clone <repo-url> && cd portfolio
 pnpm install
-cp .env.example .env   # set DATABASE_URL
+cp .env.example .env   # set DATABASE_URL, DASHBOARD_PASSWORD, NEXTAUTH_SECRET, NEXTAUTH_URL
 pnpm db:up && pnpm db:migrate && pnpm db:seed
 pnpm dev`}
             </pre>
-            <p>Open <code className="rounded bg-muted px-1.5 py-0.5 text-sm">http://localhost:3000</code>, then go to <Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>. Optional: <code className="rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:studio</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:reset</code>.</p>
+            <p>Required env: <code className="rounded bg-muted px-1.5 py-0.5 text-sm">DATABASE_URL</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">DASHBOARD_PASSWORD</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">NEXTAUTH_SECRET</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">NEXTAUTH_URL</code>. Open <code className="rounded bg-muted px-1.5 py-0.5 text-sm">http://localhost:3000</code>, then <Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>. Optional: <code className="rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:studio</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:reset</code>.</p>
           </div>
         </section>
 
@@ -120,7 +143,7 @@ pnpm test:run     # CI`}
           <p className="mt-4 break-words text-muted-foreground">
             JSON responses: success <code className="rounded bg-muted px-1.5 py-0.5 text-sm">{"{ data: T }"}</code>, errors <code className="rounded bg-muted px-1.5 py-0.5 text-sm">{"{ error: { code, message, details? } }"}</code>.
           </p>
-          <div className="mt-8 space-y-10 min-w-0 break-words">
+          <div className="mt-8 space-y-10 min-w-0 break-words [&_li_code]:max-w-full [&_li_code]:break-all">
             <div>
               <h3 className="flex items-center gap-2 font-semibold text-foreground">
                 <Database className="size-4 text-primary/80" />
@@ -189,6 +212,46 @@ pnpm test:run     # CI`}
                 <li>
                   <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">GET /api/marketplace/orders/:id</code>
                   <p className="mt-1 text-sm text-muted-foreground">Get order with items and resident.</p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="flex items-center gap-2 font-semibold text-foreground">
+                <Mail className="size-4 text-primary/80" />
+                Contact messages
+              </h3>
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">GET /api/contact</code>
+                  <p className="mt-1 text-sm text-muted-foreground">List contact messages. <strong>Admin only.</strong> Query <code className="rounded bg-muted/70 px-1 py-0.5">?archived=true</code> to include archived.</p>
+                </li>
+                <li>
+                  <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">POST /api/contact</code>
+                  <p className="mt-1 text-sm text-muted-foreground">Submit message (body: name, email, message). Public. Rate limited.</p>
+                </li>
+                <li>
+                  <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">PATCH /api/contact/:id</code>
+                  <p className="mt-1 text-sm text-muted-foreground">Archive or unarchive. Body: <code className="rounded bg-muted/70 px-1 py-0.5">{"{ archive: true }"}</code> or <code className="rounded bg-muted/70 px-1 py-0.5">{"{ unarchive: true }"}</code>. <strong>Admin only.</strong></p>
+                </li>
+                <li>
+                  <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">DELETE /api/contact/:id</code>
+                  <p className="mt-1 text-sm text-muted-foreground">Delete message permanently. <strong>Admin only.</strong></p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="flex items-center gap-2 font-semibold text-foreground">
+                <Users className="size-4 text-primary/80" />
+                Guest visitors
+              </h3>
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">POST /api/visitors/record</code>
+                  <p className="mt-1 text-sm text-muted-foreground">Record a dashboard visit by IP. No auth. Called when the dashboard loads.</p>
+                </li>
+                <li>
+                  <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-medium">GET /api/visitors</code>
+                  <p className="mt-1 text-sm text-muted-foreground">List visitors by IP (ip, visitCount, firstSeen, lastSeen). <strong>Admin only.</strong></p>
                 </li>
               </ul>
             </div>

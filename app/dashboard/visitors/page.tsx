@@ -50,7 +50,7 @@ export default function GuestVisitorsPage() {
 
   if (status === "loading" || (session?.user && session.user.role !== "admin")) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mx-auto min-w-0 max-w-full max-w-6xl px-4 py-8 sm:px-6">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-foreground">Guest visitors by IP</h1>
           <p className="mt-1 text-muted-foreground">
@@ -65,8 +65,8 @@ export default function GuestVisitorsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-      <div className="mb-8">
+    <div className="mx-auto min-w-0 max-w-full max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mb-8 min-w-0">
         <h1 className="text-2xl font-semibold text-foreground">Guest visitors by IP</h1>
         <p className="mt-1 text-muted-foreground">
           Dashboard visits from guest IPs (recorded when anyone loads the demo).
@@ -91,42 +91,79 @@ export default function GuestVisitorsPage() {
               No visitor data yet. Visits are recorded when the dashboard is loaded.
             </p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>IP</TableHead>
-                  <TableHead className="text-right">Visits</TableHead>
-                  <TableHead className="text-right">First seen</TableHead>
-                  <TableHead className="text-right">Last seen</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <>
+              {/* Mobile: stacked cards */}
+              <div className="w-full space-y-3 md:hidden">
                 {visitors.map((v) => (
-                  <TableRow key={v.id}>
-                    <TableCell className="font-mono font-medium">{v.ip}</TableCell>
-                    <TableCell className="text-right">{v.visitCount}</TableCell>
-                    <TableCell className="text-right text-muted-foreground">
-                      {new Date(v.firstSeen).toLocaleString(undefined, {
+                  <div
+                    key={v.id}
+                    className="flex flex-col gap-2 rounded-lg border bg-card p-4 shadow-sm"
+                  >
+                    <p className="font-mono font-medium">{v.ip}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {v.visitCount} visit{v.visitCount !== 1 ? "s" : ""}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      First: {new Date(v.firstSeen).toLocaleString(undefined, {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
-                    </TableCell>
-                    <TableCell className="text-right text-muted-foreground">
-                      {new Date(v.lastSeen).toLocaleString(undefined, {
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Last: {new Date(v.lastSeen).toLocaleString(undefined, {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
-                    </TableCell>
-                  </TableRow>
+                    </p>
+                  </div>
                 ))}
-              </TableBody>
-            </Table>
+              </div>
+              {/* Desktop: table */}
+              <div className="hidden min-w-0 md:block">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>IP</TableHead>
+                      <TableHead className="text-right">Visits</TableHead>
+                      <TableHead className="text-right">First seen</TableHead>
+                      <TableHead className="text-right">Last seen</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {visitors.map((v) => (
+                      <TableRow key={v.id}>
+                        <TableCell className="font-mono font-medium">{v.ip}</TableCell>
+                        <TableCell className="text-right">{v.visitCount}</TableCell>
+                        <TableCell className="text-right text-muted-foreground">
+                          {new Date(v.firstSeen).toLocaleString(undefined, {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </TableCell>
+                        <TableCell className="text-right text-muted-foreground">
+                          {new Date(v.lastSeen).toLocaleString(undefined, {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

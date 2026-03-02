@@ -72,7 +72,7 @@ export default function OrderDetailPage() {
 
   if (!id || loading) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <div className="mx-auto min-w-0 max-w-full max-w-3xl px-4 py-8 sm:px-6">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="mt-6 h-48 w-full" />
       </div>
@@ -81,7 +81,7 @@ export default function OrderDetailPage() {
 
   if (!order) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <div className="mx-auto min-w-0 max-w-full max-w-3xl px-4 py-8 sm:px-6">
         <p className="text-muted-foreground">Order not found.</p>
         <Button asChild variant="outline" className="mt-4">
           <Link href="/dashboard/marketplace">Back to Marketplace</Link>

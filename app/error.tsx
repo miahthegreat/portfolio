@@ -18,7 +18,7 @@ export default function Error({
 
   return (
     <div className="relative flex min-h-[60vh] flex-col items-center justify-center bg-gradient-subtle bg-gradient-mesh px-4 py-16">
-      <div className="mx-auto max-w-md text-center">
+      <div className="mx-auto min-w-0 max-w-full max-w-md px-4 text-center">
         <h1 className="text-xl font-semibold text-foreground sm:text-2xl">
           Something went wrong
         </h1>

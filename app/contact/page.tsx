@@ -51,7 +51,7 @@ export default function ContactPage() {
 
   return (
     <div className="relative min-h-[60vh] bg-gradient-subtle bg-gradient-mesh">
-      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div className="relative mx-auto min-w-0 max-w-full max-w-6xl px-4 py-16 sm:px-6">
         <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">Contact</h1>
         <p className="mt-2 max-w-xl text-muted-foreground">
           Have a question or want to work together? Send a message and I’ll get back to you.

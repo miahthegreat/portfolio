@@ -120,7 +120,7 @@ export default function ContactMessagesPage() {
 
   if (status === "loading" || (session?.user && session.user.role !== "admin")) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mx-auto min-w-0 max-w-full max-w-6xl px-4 py-8 sm:px-6">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-foreground">Contact messages</h1>
           <p className="mt-1 text-muted-foreground">
@@ -135,8 +135,8 @@ export default function ContactMessagesPage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-      <div className="mb-8">
+    <div className="mx-auto min-w-0 max-w-full max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mb-8 min-w-0">
         <h1 className="text-2xl font-semibold text-foreground">Contact messages</h1>
         <p className="mt-1 text-muted-foreground">
           Messages submitted from the portfolio contact form. Archive or delete to manage inbox.
@@ -174,81 +174,150 @@ export default function ContactMessagesPage() {
                 : "No messages yet. Submissions from the contact page will appear here."}
             </p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>From</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead className="max-w-[280px]">Message</TableHead>
-                  <TableHead className="text-right">Date</TableHead>
-                  <TableHead className="w-[140px] text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <>
+              {/* Mobile: stacked cards */}
+              <div className="w-full space-y-3 md:hidden">
                 {messages.map((m) => (
-                  <TableRow key={m.id}>
-                    <TableCell className="font-medium">{m.name}</TableCell>
-                    <TableCell>
+                  <div
+                    key={m.id}
+                    className="flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium">{m.name}</p>
                       <a
                         href={`mailto:${m.email}`}
-                        className="text-primary hover:underline"
+                        className="mt-0.5 block truncate text-sm text-primary hover:underline"
                       >
                         {m.email}
                       </a>
-                    </TableCell>
-                    <TableCell className="max-w-[280px] truncate text-muted-foreground">
-                      {m.message}
-                    </TableCell>
-                    <TableCell className="text-right text-muted-foreground">
-                      {new Date(m.createdAt).toLocaleDateString(undefined, {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-1">
-                        {showArchived ? (
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="size-8"
-                            onClick={() => unarchive(m.id)}
-                            disabled={actingId !== null}
-                            title="Restore from archive"
-                          >
-                            <ArchiveRestore className="size-4" />
-                          </Button>
-                        ) : (
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="size-8"
-                            onClick={() => archive(m.id)}
-                            disabled={actingId !== null}
-                            title="Archive"
-                          >
-                            <Archive className="size-4" />
-                          </Button>
-                        )}
+                      <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
+                        {m.message}
+                      </p>
+                      <p className="mt-2 text-xs text-muted-foreground">
+                        {new Date(m.createdAt).toLocaleDateString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                    <div className="flex shrink-0 gap-1">
+                      {showArchived ? (
                         <Button
-                          variant="ghost"
-                          size="icon"
-                          className="size-8 text-destructive hover:text-destructive"
-                          onClick={() => remove(m.id)}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => unarchive(m.id)}
                           disabled={actingId !== null}
-                          title="Delete permanently"
                         >
-                          <Trash2 className="size-4" />
+                          <ArchiveRestore className="size-4 sm:mr-1" />
+                          <span className="hidden sm:inline">Restore</span>
                         </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => archive(m.id)}
+                          disabled={actingId !== null}
+                        >
+                          <Archive className="size-4 sm:mr-1" />
+                          <span className="hidden sm:inline">Archive</span>
+                        </Button>
+                      )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="text-destructive hover:text-destructive"
+                        onClick={() => remove(m.id)}
+                        disabled={actingId !== null}
+                      >
+                        <Trash2 className="size-4 sm:mr-1" />
+                        <span className="hidden sm:inline">Delete</span>
+                      </Button>
+                    </div>
+                  </div>
                 ))}
-              </TableBody>
-            </Table>
+              </div>
+              {/* Desktop: table */}
+              <div className="hidden min-w-0 md:block">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>From</TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead className="max-w-[280px]">Message</TableHead>
+                      <TableHead className="text-right">Date</TableHead>
+                      <TableHead className="w-[140px] text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {messages.map((m) => (
+                      <TableRow key={m.id}>
+                        <TableCell className="font-medium">{m.name}</TableCell>
+                        <TableCell>
+                          <a
+                            href={`mailto:${m.email}`}
+                            className="block truncate text-primary hover:underline"
+                          >
+                            {m.email}
+                          </a>
+                        </TableCell>
+                        <TableCell className="max-w-[280px] truncate text-muted-foreground">
+                          {m.message}
+                        </TableCell>
+                        <TableCell className="text-right text-muted-foreground">
+                          {new Date(m.createdAt).toLocaleDateString(undefined, {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex justify-end gap-1">
+                            {showArchived ? (
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="size-8"
+                                onClick={() => unarchive(m.id)}
+                                disabled={actingId !== null}
+                                title="Restore from archive"
+                              >
+                                <ArchiveRestore className="size-4" />
+                              </Button>
+                            ) : (
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="size-8"
+                                onClick={() => archive(m.id)}
+                                disabled={actingId !== null}
+                                title="Archive"
+                              >
+                                <Archive className="size-4" />
+                              </Button>
+                            )}
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="size-8 text-destructive hover:text-destructive"
+                              onClick={() => remove(m.id)}
+                              disabled={actingId !== null}
+                              title="Delete permanently"
+                            >
+                              <Trash2 className="size-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>
