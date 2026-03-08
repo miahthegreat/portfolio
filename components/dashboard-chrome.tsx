@@ -72,7 +72,7 @@ export function DashboardChrome({ children }: { children: React.ReactNode }) {
       {/* Main: scrollable area */}
       <div id="main-content" data-testid="dashboard-main" className="flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden pl-0 lg:pl-64" tabIndex={-1}>
         <ScrollArea className="h-full min-w-0 flex-1">
-          <div className="min-w-0 max-w-full w-full overflow-x-hidden p-4 sm:p-6 lg:p-8 [&>*]:min-w-0 [&>*]:w-full">
+          <div className="min-w-0 max-w-full w-full overflow-x-clip p-2 sm:p-6 lg:p-8 [&>*]:min-w-0 [&>*]:w-full">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={pathname}

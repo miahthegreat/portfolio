@@ -29,7 +29,7 @@ const sections = [
 
 export default function DashboardDocsPage() {
   return (
-    <div data-testid="docs-page" className="min-w-0 max-w-full mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <div data-testid="docs-page" className="mx-auto box-border w-full min-w-0 max-w-4xl overflow-x-clip px-2 py-12 sm:px-6 [&_code]:break-all">
       <div className="mb-12 min-w-0">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Docs</h1>
         <p className="mt-2 break-words text-muted-foreground">
@@ -41,7 +41,7 @@ export default function DashboardDocsPage() {
               key={id}
               data-testid={`docs-nav-${id}`}
               href={`#${id}`}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm font-medium text-foreground no-underline transition-colors hover:bg-muted/60"
+              className="inline-flex min-w-0 max-w-full items-center gap-1.5 break-words rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm font-medium text-foreground no-underline transition-colors hover:bg-muted/60"
             >
               <Icon className="size-4 shrink-0" />
               {title}
@@ -52,7 +52,7 @@ export default function DashboardDocsPage() {
 
       <div className="space-y-16 min-w-0">
         <section id="overview" data-testid="docs-section-overview" className="scroll-mt-24 min-w-0">
-          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+          <h2 className="flex min-w-0 items-center gap-2 text-xl font-semibold text-foreground">
             <BookOpen className="size-5 shrink-0 text-primary/80" />
             Overview
           </h2>
@@ -64,13 +64,13 @@ export default function DashboardDocsPage() {
               <strong className="text-foreground">Dashboard</strong> (<Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>) includes the sidebar (property selector + sections) and Docs. Onboarding is scoped to the selected property: residents and tasks belong to that property. Marketplace and Analytics provide demo data.
             </p>
             <p>
-              Data is stored in PostgreSQL via <strong className="text-foreground">Prisma</strong>. The UI calls <strong className="text-foreground">REST APIs</strong> under <code className="rounded bg-muted px-1.5 py-0.5 text-sm">/api/*</code>. The dashboard supports <strong className="text-foreground">guest access</strong> (no sign-in) and <strong className="text-foreground">admin sign-in</strong> for Messages and Guest visitors by IP.
+              Data is stored in PostgreSQL via <strong className="text-foreground">Prisma</strong>. The UI calls <strong className="text-foreground">REST APIs</strong> under <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">/api/*</code>. The dashboard supports <strong className="text-foreground">guest access</strong> (no sign-in) and <strong className="text-foreground">admin sign-in</strong> for Messages and Guest visitors by IP.
             </p>
           </div>
         </section>
 
         <section id="access" data-testid="docs-section-access" className="scroll-mt-24 min-w-0">
-          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+          <h2 className="flex min-w-0 items-center gap-2 text-xl font-semibold text-foreground">
             <Shield className="size-5 shrink-0 text-primary/80" />
             Dashboard access
           </h2>
@@ -89,7 +89,7 @@ export default function DashboardDocsPage() {
         </section>
 
         <section id="tech-stack" data-testid="docs-section-tech-stack" className="scroll-mt-24 min-w-0">
-          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+          <h2 className="flex min-w-0 items-center gap-2 text-xl font-semibold text-foreground">
             <Cpu className="size-5 shrink-0 text-primary/80" />
             Tech stack
           </h2>
@@ -104,48 +104,52 @@ export default function DashboardDocsPage() {
         </section>
 
         <section id="setup" data-testid="docs-section-setup" className="scroll-mt-24 min-w-0">
-          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+          <h2 className="flex min-w-0 items-center gap-2 text-xl font-semibold text-foreground">
             <Play className="size-5 shrink-0 text-primary/80" />
             Development setup
           </h2>
           <div className="mt-4 space-y-4 break-words text-muted-foreground">
             <p>Prerequisites: Node 20+, pnpm, Docker.</p>
-            <pre className="overflow-x-auto rounded-lg border border-border/60 bg-muted/50 p-4 text-sm">
+            <div className="min-w-0 max-w-full">
+              <pre className="min-w-0 max-w-full overflow-x-auto rounded-lg border border-border/60 bg-muted/50 p-4 text-sm">
 {`git clone <repo-url> && cd portfolio
 pnpm install
 cp .env.example .env   # set DATABASE_URL, DASHBOARD_PASSWORD, NEXTAUTH_SECRET, NEXTAUTH_URL
 pnpm db:up && pnpm db:migrate && pnpm db:seed
 pnpm dev`}
-            </pre>
-            <p>Required env: <code className="rounded bg-muted px-1.5 py-0.5 text-sm">DATABASE_URL</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">DASHBOARD_PASSWORD</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">NEXTAUTH_SECRET</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">NEXTAUTH_URL</code>. Open <code className="rounded bg-muted px-1.5 py-0.5 text-sm">http://localhost:3000</code>, then <Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>. Optional: <code className="rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:studio</code>, <code className="rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:reset</code>.</p>
+              </pre>
+            </div>
+            <p>Required env: <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">DATABASE_URL</code>, <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">DASHBOARD_PASSWORD</code>, <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">NEXTAUTH_SECRET</code>, <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">NEXTAUTH_URL</code>. Open <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">http://localhost:3000</code>, then <Link href="/dashboard" className="font-medium text-primary hover:underline">/dashboard</Link>. Optional: <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:studio</code>, <code className="break-all rounded bg-muted px-1.5 py-0.5 text-sm">pnpm db:reset</code>.</p>
           </div>
         </section>
 
         <section id="testing" data-testid="docs-section-testing" className="scroll-mt-24 min-w-0">
-          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+          <h2 className="flex min-w-0 items-center gap-2 text-xl font-semibold text-foreground">
             <FlaskConical className="size-5 shrink-0 text-primary/80" />
             Testing
           </h2>
           <div className="mt-4 space-y-4 break-words text-muted-foreground">
             <p><strong className="text-foreground">Vitest</strong> + React Testing Library + jsdom.</p>
-            <pre className="overflow-x-auto rounded-lg border border-border/60 bg-muted/50 p-4 text-sm">
+            <div className="min-w-0 max-w-full">
+              <pre className="min-w-0 max-w-full overflow-x-auto rounded-lg border border-border/60 bg-muted/50 p-4 text-sm">
 {`pnpm test        # Watch
 pnpm test:run     # CI`}
-            </pre>
+              </pre>
+            </div>
           </div>
         </section>
 
         <section id="api" data-testid="docs-section-api" className="scroll-mt-24 min-w-0">
-          <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+          <h2 className="flex min-w-0 items-center gap-2 text-xl font-semibold text-foreground">
             <Code2 className="size-5 shrink-0 text-primary/80" />
             API reference
           </h2>
           <p className="mt-4 break-words text-muted-foreground">
             JSON responses: success <code className="rounded bg-muted px-1.5 py-0.5 text-sm">{"{ data: T }"}</code>, errors <code className="rounded bg-muted px-1.5 py-0.5 text-sm">{"{ error: { code, message, details? } }"}</code>.
           </p>
-          <div className="mt-8 space-y-10 min-w-0 break-words [&_li_code]:max-w-full [&_li_code]:break-all">
+          <div className="mt-8 space-y-10 min-w-0 max-w-full break-words [&_li_code]:max-w-full [&_li_code]:break-all">
             <div>
-              <h3 className="flex items-center gap-2 font-semibold text-foreground">
+              <h3 className="flex min-w-0 items-center gap-2 font-semibold text-foreground">
                 <Database className="size-4 text-primary/80" />
                 Properties & Onboarding
               </h3>
@@ -184,7 +188,7 @@ pnpm test:run     # CI`}
               </ul>
             </div>
             <div>
-              <h3 className="flex items-center gap-2 font-semibold text-foreground">
+              <h3 className="flex min-w-0 items-center gap-2 font-semibold text-foreground">
                 <Database className="size-4 text-primary/80" />
                 Marketplace
               </h3>
@@ -216,7 +220,7 @@ pnpm test:run     # CI`}
               </ul>
             </div>
             <div>
-              <h3 className="flex items-center gap-2 font-semibold text-foreground">
+              <h3 className="flex min-w-0 items-center gap-2 font-semibold text-foreground">
                 <Mail className="size-4 text-primary/80" />
                 Contact messages
               </h3>
@@ -240,7 +244,7 @@ pnpm test:run     # CI`}
               </ul>
             </div>
             <div>
-              <h3 className="flex items-center gap-2 font-semibold text-foreground">
+              <h3 className="flex min-w-0 items-center gap-2 font-semibold text-foreground">
                 <Users className="size-4 text-primary/80" />
                 Guest visitors
               </h3>
@@ -259,12 +263,12 @@ pnpm test:run     # CI`}
         </section>
       </div>
 
-      <div className="mt-16 flex justify-between border-t border-border/60 pt-8">
-        <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
-          <ArrowRight className="size-4 rotate-180" />
+      <div className="mt-16 flex min-w-0 max-w-full flex-wrap justify-between gap-4 border-t border-border/60 pt-8">
+        <Link href="/dashboard" className="inline-flex min-w-0 max-w-full shrink-0 items-center gap-1.5 break-words text-sm font-medium text-primary hover:underline">
+          <ArrowRight className="size-4 shrink-0 rotate-180" />
           Overview
         </Link>
-        <a href="#overview" className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground">
+        <a href="#overview" className="inline-flex min-w-0 max-w-full shrink-0 items-center gap-1.5 break-words text-sm font-medium text-muted-foreground hover:text-foreground">
           Back to top
         </a>
       </div>
